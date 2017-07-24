@@ -24,7 +24,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         
-        @include('layouts.partials.contentheader')
+        {{-- @include('layouts.partials.contentheader') --}}
         
         <section class="content">
             <div class="row">

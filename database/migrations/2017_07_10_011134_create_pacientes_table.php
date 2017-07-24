@@ -23,8 +23,7 @@ class CreatePacientesTable extends Migration
             $table->string('telefono',7);
             $table->text('direccion');
             $table->string('titular',2);
-            $table->string('gobernacion',2);
-            $table->string('mppe',2);
+            $table->string('institucion',2);
             $table->timestamps();
         });
     }

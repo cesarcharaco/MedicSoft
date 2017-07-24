@@ -1,6 +1,7 @@
 <header class="main-header">
 <!-- Logo -->
-<a href="index2.html" class="logo">
+
+<a href="#" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>M</b>SF</span>
     <!-- logo for regular state and mobile devices -->
@@ -17,16 +18,16 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+                    <img src="{{ asset('logo-mini3.png') }}" class="user-image" alt="User Image">
                     <span class="hidden-xs">Perfil</span>
                 </a>
             <ul class="dropdown-menu">
             <!-- User image -->
                 <li class="user-header">
-                    <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                    <img src="{{ asset('logo-mini3.png') }}" class="img-circle" alt="User Image">
                     <p>
-                        {{ ucwords(Auth::user()->name) }}
-                        <small>Member since Nov. 2012</small>
+                       Usuario: {{ ucwords(Auth::user()->name) }}
+                        <small>Unidad Médica José Gregorio Hernández<br> y La Chinita C.A.</small>
                     </p>
                 </li>
                 <!-- Menu Footer-->

@@ -7,8 +7,8 @@
                 <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <p>{{ ucwords(Auth::user()->name) }}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i>En Línea</a>
             </div>
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -16,14 +16,14 @@
             <li class="header">MENU DE NAVEGACIÓN</li>
             <li class="active treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    <i class="fa fa-dashboard"></i> <span>Pacientes</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                    <li class="active"><a href="{{ URL('admin/pacientes')}}"><i class="fa fa-circle-o"></i>Lista</a></li>
+                    <li><a href="{{ URL('admin/pacientes/create')}}"><i class="fa fa-circle-o"></i>Nuevo</a></li>
                 </ul>
             </li>
             <li class="header">CONFIGURACIÓN</li>

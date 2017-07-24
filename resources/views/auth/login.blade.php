@@ -1,5 +1,4 @@
 @extends('welcome')
-
 @section('content')
 
 <div class="login-box">
@@ -14,7 +13,7 @@
         {{ csrf_field() }}
             <div class="col-xs-12">
             <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-                <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}" required autofocus>
+                <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}" required >
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
                 @if ($errors->has('email'))
@@ -48,7 +47,6 @@
         </form>
 
         <a href="#">Olvide mi contraseña</a><br>
-        <a href="#" class="text-center">Regístrarme ahora</a>
     </div>
 </div>
 
