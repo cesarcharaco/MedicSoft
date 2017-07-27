@@ -7,20 +7,20 @@
 	{!! Form::label('titular','* ¿Institución Aseguradora?') !!}
 </div>
 <div class="form-group">
-	{!! Form::label('MPPEUCT','MPPEUCT') !!}
-	{!! Form::radio('institucion','MPPEUCT',true,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación Superior, Ciencia y Tecnología']) !!}
+	{!! Form::label('MPPESCT','MPPESCT') !!}
+	{!! Form::radio('institucion','MPPESCT',true,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación Superior, Ciencia y Tecnología']) !!}
 	{!! Form::label('MPPE','MPPE') !!}
 	{!! Form::radio('institucion','MPPE',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
 </div>
 
 <div class="form-group{{ $errors->has('nombres') ? ' has-error' : '' }}">
 	{!! Form::label('nombres','* Nombres') !!}
-	{!! Form::text('nombres',null,['class' => 'form-control','placeholder' => 'Ej: Martin José', 'title' => 'Ingrese el/los Nombre(s) del Paciente', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('nombres') ? 'border-color: red; border: 1px solid red;': '']) !!}
+	{!! Form::text('nombres',null,['class' => 'form-control','required' => 'required','placeholder' => 'Ej: Martin José', 'title' => 'Ingrese el/los Nombre(s) del Paciente', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('nombres') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>
 
 <div class="form-group{{ $errors->has('apellidos') ? ' has-error' : '' }}">
 	{!! Form::label('apellidos','* Apellidos') !!}
-	{!! Form::text('apellidos',null,['class' => 'form-control','placeholder' => 'Ej: Martin José', 'title' => 'Ingrese el/los Apellido(s) del Paciente', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('apellidos') ? 'border-color: red; border: 1px solid red;': '']) !!}
+	{!! Form::text('apellidos',null,['class' => 'form-control','required' => 'required','placeholder' => 'Ej: Campos Ribas', 'title' => 'Ingrese el/los Apellido(s) del Paciente', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('apellidos') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>
 
 <div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">
@@ -35,7 +35,7 @@
 
 <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
 	{!! Form::label('telefono','* Teléfono') !!}
-	<select name="codigo_teelf" id="codigo_telf" style="width: 80px;" class="form-control" title="Seleccione el código del número telefónico">
+	<select name="codigo_telf" id="codigo_telf" style="width: 80px;" class="form-control" title="Seleccione el código del número telefónico">
 		<option value="0244">0244</option>
 		<option value="0412">0412</option>
 		<option value="0414">0414</option>

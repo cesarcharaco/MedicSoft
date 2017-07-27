@@ -8,10 +8,10 @@
     <span class="logo-lg"><b>Medic</b>Soft</span>
 </a>
 <!-- Header Navbar: style can be found in header.less -->
-<nav class="navbar navbar-static-top">
+<nav class="navbar navbar-static-top skin-blue-light">
     <!-- Sidebar toggle button-->
     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">Barra de Navegación</span>
     </a>
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
@@ -42,9 +42,12 @@
                         </form>
                     </div>
                 </li>
+
             </ul>
+
             </li>
         </ul>
     </div>
 </nav>
+
 </header>

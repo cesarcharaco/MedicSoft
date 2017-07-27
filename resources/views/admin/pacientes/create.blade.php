@@ -15,6 +15,7 @@
     <div class="row">
         <div class="col-xs-11">
             @include('alerts.requests')
+            @include('flash::message')
             <div class="panel panel-default">
                 <div class="panel-heading">Registro de Paciente<br>
                 Los campos con (<strong>*</strong>) son obligatorios</div>

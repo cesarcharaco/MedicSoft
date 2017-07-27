@@ -15,11 +15,11 @@ class CreateHorariosTable extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_tipoconsulta')->unsigned();
+            $table->integer('id_especialidad')->unsigned();
             $table->integer('id_turno')->unsigned();
             $table->enum('estado',['Vacante','Ocupado'])->default('Vacante');
 
-            $table->foreign('id_tipoconsulta')->references('id')->on('tipo_consulta')->onDelete('cascade');
+            $table->foreign('id_especialidad')->references('id')->on('especialidades')->onDelete('cascade');
             $table->foreign('id_turno')->references('id')->on('turnos')->onDelete('cascade');
             $table->timestamps();
         });
