@@ -31,5 +31,9 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 		'uses' => 'HorariosController@show2',
 		'as' => 'admin.horarios.show2' ]);
 	Route::resource('/consultas','ConsultasController');
+	Route::post('/consultas/vistas',[
+		'uses' => 'ConsultasController@vistas',
+		'as' => 'admin.consultas.vistas'
+		]);
 });
 

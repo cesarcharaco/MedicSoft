@@ -26,16 +26,21 @@
                   <th>Paciente</th>
                   <th>Especialidad</th>
                   <th>Tipo</th>
+                  <th>Estado</th>
+                  <th>Posición</th>
                   <th>Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($consultas as $consulta)
+                @if($consulta->estado!="Eliminada")
                 <tr>
                     <td>{{$num=$num+1}}</td>
                     <td>{{$consulta->pacientes->nacionalidad}}-{{$consulta->pacientes->cedula}} {{$consulta->pacientes->apellidos}}, {{$consulta->pacientes->nombres}} </td>
                     <td>{{$consulta->consultasmontos->tipoconsultas->especialidades->especialidad}}</td>
-                    <td>{{$consulta->consultasmontos->tipoconsultas->consulta}}</td> 
+                    <td>{{$consulta->consultasmontos->tipoconsultas->consulta}}</td>
+                    <td> {{$consulta->estado}} </td> 
+                    <td> {{$consulta->posicion}} </td>
                     <td>
                         <div class="btn-group">
                           <a href="{{ route('consultas.edit', [$consulta->id]) }}">
@@ -48,10 +53,16 @@
                               <i class="fa fa-trash"></i>
                             </button>
                           </a>
+                          <a href="#" >
+                            <button onclick="consultavista({{ $consulta->id }})" class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede marcar la consulta como ya vista" >
+                              <i class="fa fa-eye"></i>
+                            </button>
+                          </a>
                         <br><br>
                         </div>
                       </td>
                 </tr>
+                @endif
                 @endforeach
                 </tbody>
                 <tfoot>
@@ -60,6 +71,8 @@
                   <th>Paciente</th>
                   <th>Especialidad</th>
                   <th>Tipo</th>
+                  <th>Estado</th>
+                  <th>Posición</th>
                   <th>Opciones</th>
                 </tr>
                 </tfoot>
@@ -102,6 +115,39 @@
         function consulta(consulta){
 
             $('#consulta').val(consulta);
+        }
+
+    </script>
+<div id="myModal2" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Consulta Vista</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Esta seguro que desea marcar como vista esta consulta en especifico?...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+
+                    {!! Form::open(['route' => ['admin.consultas.vistas'], 'method' => 'POST']) !!}
+                        <input type="hidden" id="consulta2" name="id">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    {!! Form::close() !!}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script type="text/javascript">
+
+        function consultavista(consulta){
+
+            $('#consulta2').val(consulta);
         }
 
     </script>

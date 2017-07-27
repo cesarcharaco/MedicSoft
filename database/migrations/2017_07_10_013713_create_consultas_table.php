@@ -18,6 +18,8 @@ class CreateConsultasTable extends Migration
             $table->integer('id_paciente')->unsigned();
             $table->integer('id_consultamonto')->unsigned();
             $table->date('fecha');
+            $table->enum('estado',['En Cola','Vista','Eliminada'])->default('En Cola');
+            $table->string('posicion',2);
 
             $table->foreign('id_paciente')->references('id')->on('pacientes')->onDelete('cascade');
             $table->foreign('id_consultamonto')->references('id')->on('consultas_montos')->onDelete('cascade');

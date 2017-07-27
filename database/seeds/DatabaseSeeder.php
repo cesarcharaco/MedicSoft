@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MedicosTableSeeder::class);
         $this->call(DiasTableSeeder::class);
         $this->call(TurnosTableSeeder::class);
+        $this->call(ConsultasMontosTableSeeder::class);
 
     }
 }
