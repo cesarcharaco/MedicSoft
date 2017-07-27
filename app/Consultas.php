@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Consultas extends Model
 {
     protected $table='consultas';
-    protected $fillable=['id_paciente','id_consultamonto','fecha'];
+    protected $fillable=['id_paciente','id_consultamonto','fecha','estado','posicion','diagnostico'];
 
     public function pacientes()
     {

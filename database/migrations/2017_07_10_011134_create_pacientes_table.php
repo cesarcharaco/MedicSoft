@@ -24,6 +24,8 @@ class CreatePacientesTable extends Migration
             $table->text('direccion');
             $table->string('titular',2);
             $table->string('institucion',60);
+            $table->string('edad',2);
+            $table->string('genero',1);
             $table->timestamps();
         });
     }

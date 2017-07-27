@@ -61,7 +61,8 @@ class ConsultasController extends Controller
                 return redirect()->route('consultas.create')->withInput();
             } else {
                 $consulta=Consultas::where('id_paciente',$request->id_paciente)->where('fecha',$fecha)->get();
-                if (count($consulta)>0 AND count($consulta)<3) {
+
+                if (count($consulta)>=2) {
                     flash("DISCULPE, EL PACIENTE YA LLEGÓ AL LÍMITE DIARIO DE CONSULTAS!", 'error'); 
                     return redirect()->route('consultas.create')->withInput();
                 } else {
@@ -96,16 +97,40 @@ class ConsultasController extends Controller
         }
         
     }
+    public function mostrarpacientes(Request $request)
+    {
+        $fecha=date('Y-m-d');
+        $consultas=Consultas::select('id_paciente')->where('fecha',$fecha)->groupBy('id_paciente')->get();
+        $num=0;
 
+        return View('admin.consultas.pacientes',compact('consultas','num'));
+        
+    }
+
+    public function verconsultas($id)
+    {
+        $fecha=date('Y-m-d');
+        $consultas=Consultas::where('id_paciente',$id)->where('fecha',$fecha)->get();
+        $paciente=Pacientes::find($id);
+        $num=0;
+        $total=0;
+
+        return View('admin.consultas.verconsultas',compact('consultas','num','paciente','total'));
+    }
     /**
      * Display the specified resource.
      *
      * @param  \App\Consultas  $consultas
      * @return \Illuminate\Http\Response
      */
-    public function show(Consultas $consultas)
+    public function show()
     {
-        //
+        
+        $fecha=date('Y-m-d');
+        $consultas=Consultas::where('fecha','<>',$fecha)->get();
+        $num=0;
+
+        return view('admin.consultas.show', compact('consultas','num'));
     }
 
     /**
@@ -119,12 +144,14 @@ class ConsultasController extends Controller
     {
         $consulta=Consultas::find($request->id);
         $consulta->estado="Vista";
+        $consulta->diagnostico=$request->diagnostico;
         $consulta->save();
 
         flash("LA CONSULTA SE HA MARCADO COMO VISTA!", 'success'); 
         return redirect()->route('consultas.index');
         
     }
+    
     public function edit($id)
     {
         $consulta=Consultas::find($id);
@@ -203,7 +230,7 @@ class ConsultasController extends Controller
         }
         
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *

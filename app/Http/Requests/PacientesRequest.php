@@ -29,7 +29,9 @@ class PacientesRequest extends FormRequest
             'apellidos' => 'required',
             'cedula' => 'required|digits_between:6,8|numeric',
             'telefono' => 'required|digits_between:7,7|numeric',
-            'direccion' => 'required'
+            'direccion' => 'required',
+            'genero' => 'required',
+            'edad' => 'required|numeric|digits_between:0,99'
         ];
     }
 }

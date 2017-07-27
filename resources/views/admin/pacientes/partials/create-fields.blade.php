@@ -32,7 +32,20 @@
 	</select>
 	{!! Form::text('cedula', null, ['class' => 'form-control','placeholder' => 'Ej: 1234567','required' => 'required', 'title' => 'Ingrese la cédula del paciente sin separación por punto(.) o espacios','maxlength' => '8', 'style'=>$errors->has('cedula') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>
+<div class="form-group">
+	{!! Form::label('genero','* Género') !!}
+</div>
+<div class="form-group">
+	{!! Form::label('m','M') !!}
+	{!! Form::radio('genero','M',true,[ 'title' => 'Seleccione si es de género Masculino']) !!}
+	{!! Form::label('f','F') !!}
+	{!! Form::radio('genero','F',false,[ 'title' => 'Seleccione si es de género Femenino']) !!}
+</div>
 
+<div class="form-group{{ $errors->has('edad') ? ' has-error' : '' }}">
+	{!! Form::label('edad','* Edad') !!}
+	{!! Form::number('edad',null,['class' => 'form-control','required' => 'required','placeholder' => '18','min' => '0', 'title' => 'Ingrese la Edad del Paciente','maxLength' => '2','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);', 'style'=>$errors->has('edad') ? 'border-color: red; border: 1px solid red;': '']) !!}
+</div>
 <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
 	{!! Form::label('telefono','* Teléfono') !!}
 	<select name="codigo_telf" id="codigo_telf" style="width: 80px;" class="form-control" title="Seleccione el código del número telefónico">

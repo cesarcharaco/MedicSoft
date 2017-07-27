@@ -61,7 +61,8 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ URL('admin/consultas')}}"><i class="fa fa-circle-o"></i>Lista del día</a></li>
                     <li><a href="{{ URL('admin/consultas/create')}}"><i class="fa fa-circle-o"></i>Nueva</a></li>
-                    <li><a href="{{ URL('admin/consultas/show')}}"><i class="fa fa-circle-o"></i>Por Especialidad</a></li>
+                    <li><a href="{{ URL('admin/consultas/show')}}"><i class="fa fa-circle-o"></i>Anteriores</a></li>
+                    <li><a href="{{ URL('admin/mostrarpacientes')}}"><i class="fa fa-circle-o"></i>Pacientes</a></li>
                 </ul>
             </li>
             <li class="active treeview">

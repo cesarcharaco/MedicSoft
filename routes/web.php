@@ -35,5 +35,13 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 		'uses' => 'ConsultasController@vistas',
 		'as' => 'admin.consultas.vistas'
 		]);
+	Route::get('/mostrarpacientes',[
+		'uses' => 'ConsultasController@mostrarpacientes',
+		'as' => 'admin.mostrarpacientes'
+		]);
+	Route::get('/consultas/{id}/verconsultas',[
+		'uses' => 'ConsultasController@verconsultas',
+		'as' => 'admin.consultas.verconsultas'
+		]);
 });
 

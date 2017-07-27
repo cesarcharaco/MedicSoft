@@ -131,10 +131,17 @@
                     ¿Esta seguro que desea marcar como vista esta consulta en especifico?...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                    
 
                     {!! Form::open(['route' => ['admin.consultas.vistas'], 'method' => 'POST']) !!}
                         <input type="hidden" id="consulta2" name="id">
+                        
+
+                        <div class="form-group">
+                          {!! Form::label('diagnostico','Diagnóstico') !!}
+                          <textarea placeholder="Ingrese el diagnóstico" name="diagnostico" required="required" id="diagnostico" cols="60" rows="3" onkeyup ="javascript:this.value=this.value.toUpperCase()"></textarea> 
+                        </div>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-primary">Aceptar</button>
                     {!! Form::close() !!}
 

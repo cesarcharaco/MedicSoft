@@ -20,7 +20,9 @@ class PacientesTableSeeder extends Seeder
             'telefono' => '1233211',
             'direccion' => 'LA VICTORIA',
             'titular' => 'NO',
-            'institucion' => 'MPPESCT'
+            'institucion' => 'MPPESCT',
+            'edad' => '40',
+            'genero' => 'F'
         ]);
 
         DB::table('pacientes')->insert([
@@ -32,7 +34,9 @@ class PacientesTableSeeder extends Seeder
             'telefono' => '1233341',
             'direccion' => 'LA VICTORIA',
             'titular' => 'SI',
-            'institucion' => 'MPPESCT'
+            'institucion' => 'MPPESCT',
+            'edad' => '50',
+            'genero' => 'M'
         ]);
 
         DB::table('pacientes')->insert([
@@ -44,7 +48,9 @@ class PacientesTableSeeder extends Seeder
             'telefono' => '4332233',
             'direccion' => 'MARACAY',
             'titular' => 'SI',
-            'institucion' => 'MPPESCT'
+            'institucion' => 'MPPESCT',
+            'edad' => '45',
+            'genero' => 'F'
         ]);
 
         DB::table('pacientes')->insert([
@@ -56,7 +62,9 @@ class PacientesTableSeeder extends Seeder
             'telefono' => '2343666',
             'direccion' => 'LA VICTORIA',
             'titular' => 'SI',
-            'institucion' => 'MPPESCT'
+            'institucion' => 'MPPESCT',
+            'edad' => '40',
+            'genero' => 'F'
         ]);
 
         DB::table('pacientes')->insert([
@@ -68,7 +76,9 @@ class PacientesTableSeeder extends Seeder
             'telefono' => '3345211',
             'direccion' => 'CAGUA',
             'titular' => 'SI',
-            'institucion' => 'MPPESCT'
+            'institucion' => 'MPPESCT',
+            'edad' => '30',
+            'genero' => 'M'
         ]);
 
         DB::table('pacientes')->insert([
@@ -80,7 +90,9 @@ class PacientesTableSeeder extends Seeder
             'telefono' => '9987877',
             'direccion' => 'EL CONSEJO',
             'titular' => 'NO',
-            'institucion' => 'MPPE'
+            'institucion' => 'MPPE',
+            'edad' => '38',
+            'genero' => 'M'
         ]);
 
         DB::table('pacientes')->insert([
@@ -92,7 +104,9 @@ class PacientesTableSeeder extends Seeder
             'telefono' => '3353506',
             'direccion' => 'ZUATA',
             'titular' => 'NO',
-            'institucion' => 'MPPE'
+            'institucion' => 'MPPE',
+            'edad' => '49',
+            'genero' => 'F'
         ]);
 
         DB::table('pacientes')->insert([
@@ -104,7 +118,9 @@ class PacientesTableSeeder extends Seeder
             'telefono' => '6787878',
             'direccion' => 'TEJERIAS',
             'titular' => 'SI',
-            'institucion' => 'MPPE'
+            'institucion' => 'MPPE',
+            'edad' => '63',
+            'genero' => 'M'
         ]);
 
         DB::table('pacientes')->insert([
@@ -116,7 +132,9 @@ class PacientesTableSeeder extends Seeder
             'telefono' => '7784534',
             'direccion' => 'SAN MATEO',
             'titular' => 'SI',
-            'institucion' => 'MPPE'
+            'institucion' => 'MPPE',
+            'edad' => '28',
+            'genero' => 'M'
         ]);
 
         DB::table('pacientes')->insert([
@@ -128,7 +146,9 @@ class PacientesTableSeeder extends Seeder
             'telefono' => '5674354',
             'direccion' => 'ZUATA',
             'titular' => 'SI',
-            'institucion' => 'MPPE'
+            'institucion' => 'MPPE',
+            'edad' => '40',
+            'genero' => 'F'
         ]);
 
     }
