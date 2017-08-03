@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Consultas;
 use App\Pacientes;
+use App\Pacientes_nt;
 use App\Tipo_consulta;
 use App\ConsultasMontos;
 use Illuminate\Http\Request;
 use App\Http\Requests\ConsultasRequest;
 use Laracasts\Flash\flash;
+use Excel;
 
 class ConsultasController extends Controller
 {
@@ -33,10 +35,10 @@ class ConsultasController extends Controller
      */
     public function create()
     {
-        $pacientes=Pacientes::all();
+        $pacientesnt=Pacientes_nt::all();
         $tipoconsultas=Tipo_consulta::all();
 
-        return view('admin.consultas.create', compact('pacientes','tipoconsultas'));
+        return view('admin.consultas.create', compact('pacientesnt','tipoconsultas'));
     }
 
     /**
@@ -55,12 +57,12 @@ class ConsultasController extends Controller
             return redirect()->route('consultas.create')->withInput();
         } else {
 
-            $consulta=Consultas::where('id_consultamonto',$consultamonto->id)->where('id_paciente',$request->id_paciente)->where('fecha',$fecha)->get();
+            $consulta=Consultas::where('id_consultamonto',$consultamonto->id)->where('id_pacientent',$request->id_pacientent)->where('fecha',$fecha)->get();
             if (count($consulta)==1) {
                 flash("DISCULPE, EL PACIENTE YA SE ENCUENTRA PARA HOY REGISTRADO PARA ESTA CONSULTA!", 'error'); 
                 return redirect()->route('consultas.create')->withInput();
             } else {
-                $consulta=Consultas::where('id_paciente',$request->id_paciente)->where('fecha',$fecha)->get();
+                $consulta=Consultas::where('id_pacientent',$request->id_pacientent)->where('fecha',$fecha)->get();
 
                 if (count($consulta)>=2) {
                     flash("DISCULPE, EL PACIENTE YA LLEGÓ AL LÍMITE DIARIO DE CONSULTAS!", 'error'); 
@@ -73,7 +75,7 @@ class ConsultasController extends Controller
                             $posicion=$consulta->posicion;
                             //falta la busqueda de cuantas veces al mes se ha visto por esta consulta
                             $consulta= new Consultas();
-                            $consulta->id_paciente=$request->id_paciente;
+                            $consulta->id_pacientent=$request->id_pacientent;
                             $consulta->id_consultamonto=$consultamonto->id;
                             $consulta->fecha=$fecha;
                             $consulta->posicion=$posicion+1;
@@ -81,7 +83,7 @@ class ConsultasController extends Controller
                             } else {
                                 //falta la busqueda de cuantas veces al mes se ha visto por esta consulta
                             $consulta= new Consultas();
-                            $consulta->id_paciente=$request->id_paciente;
+                            $consulta->id_pacientent=$request->id_pacientent;
                             $consulta->id_consultamonto=$consultamonto->id;
                             $consulta->fecha=$fecha;
                             $consulta->posicion=1;
@@ -100,7 +102,7 @@ class ConsultasController extends Controller
     public function mostrarpacientes(Request $request)
     {
         $fecha=date('Y-m-d');
-        $consultas=Consultas::select('id_paciente')->where('fecha',$fecha)->groupBy('id_paciente')->get();
+        $consultas=Consultas::select('id_pacientent')->where('fecha',$fecha)->groupBy('id_pacientent')->get();
         $num=0;
 
         return View('admin.consultas.pacientes',compact('consultas','num'));
@@ -110,12 +112,12 @@ class ConsultasController extends Controller
     public function verconsultas($id)
     {
         $fecha=date('Y-m-d');
-        $consultas=Consultas::where('id_paciente',$id)->where('fecha',$fecha)->get();
-        $paciente=Pacientes::find($id);
+        $consultas=Consultas::where('id_pacientent',$id)->where('fecha',$fecha)->get();
+        $pacientent=Pacientes_nt::find($id);
         $num=0;
         $total=0;
 
-        return View('admin.consultas.verconsultas',compact('consultas','num','paciente','total'));
+        return View('admin.consultas.verconsultas',compact('consultas','num','pacientent','total'));
     }
     /**
      * Display the specified resource.
@@ -127,7 +129,9 @@ class ConsultasController extends Controller
     {
         
         $fecha=date('Y-m-d');
+        
         $consultas=Consultas::where('fecha','<>',$fecha)->get();
+        
         $num=0;
 
         return view('admin.consultas.show', compact('consultas','num'));
@@ -155,10 +159,11 @@ class ConsultasController extends Controller
     public function edit($id)
     {
         $consulta=Consultas::find($id);
-        $paciente=Pacientes::find($consulta->id_paciente);
+        //dd($consulta);
+        $pacientent=Pacientes_nt::find($consulta->id_pacientent);
         $tipoconsultas=Tipo_consulta::all();
 
-        return view('admin.consultas.edit', compact('consulta','tipoconsultas','paciente'));
+        return view('admin.consultas.edit', compact('consulta','tipoconsultas','pacientent'));
     }
 
     /**
@@ -178,12 +183,12 @@ class ConsultasController extends Controller
             return redirect()->route('consultas.edit',$id)->withInput();
         } else {
 
-            $consulta=Consultas::where('id_consultamonto',$consultamonto->id)->where('id_paciente',$request->id_paciente)->where('fecha',$fecha)->get();
+            $consulta=Consultas::where('id_consultamonto',$consultamonto->id)->where('id_pacientent',$request->id_pacientent)->where('fecha',$fecha)->get();
             if (count($consulta)==1) {
                 flash("DISCULPE, EL PACIENTE YA SE ENCUENTRA PARA HOY REGISTRADO PARA ESTA CONSULTA!", 'warning'); 
                 return redirect()->route('consultas.edit',$id)->withInput();
             } else {
-                $consulta=Consultas::where('id_paciente',$request->id_paciente)->where('fecha',$fecha)->get();
+                $consulta=Consultas::where('id_pacientent',$request->id_pacientent)->where('fecha',$fecha)->get();
                 if (count($consulta)>0 AND count($consulta)<3) {
                     flash("DISCULPE, EL PACIENTE YA LLEGÓ AL LÍMITE DIARIO DE CONSULTAS!", 'error'); 
                     return redirect()->route('consultas.edit',$id)->withInput();
@@ -230,7 +235,53 @@ class ConsultasController extends Controller
         }
         
     }
-    
+    public function reportediario()
+    {
+        $fecha=date('Y-m-d');
+        $tipoconsultas=Tipo_consulta::all();
+        $consultas=Consultas::select('id_pacientent')->where('fecha',$fecha)->where('estado','Vista')->groupBy('id_pacientent')->get();
+
+        $vistas=Consultas::where('fecha',$fecha)->where('estado','Vista')->get();
+
+        if (count($vistas)>0 AND count($consultas) >0) {
+            
+            Excel::create("Reporte Diario", function ($excel) use ($tipoconsultas,$consultas,$vistas) {
+
+                $excel->setTitle("Reporte Diario");
+                $excel->sheet("Pestaña 1", function ($sheet) use ($tipoconsultas,$consultas,$vistas) 
+                {
+                    $sheet->loadView('admin.reportes.excel.diario')->with('tipoconsultas', $tipoconsultas)->with('consultas',$consultas)->with('vistas',$vistas);
+                });
+
+            })->download('xlsx');
+        } else {
+            flash("NO EXISTEN CONSULTAS PARA EL DÍA DE HOY QUE HALLAN SIDO MARCADAS COMO VISTAS!", 'success'); 
+            return redirect()->route('consultas.index');
+        }
+        
+    }
+
+    public function reportediariovistas($value='')
+    {
+        $fecha=date('Y-m-d');
+        $tipoconsultas=Tipo_consulta::all();
+        $consultas=Consultas::select('id_pacientent')->where('fecha',$fecha)->where('estado','Vista')->groupBy('id_pacientent')->get();
+
+        $vistas=Consultas::where('fecha',$fecha)->where('estado','Vista')->get();
+
+        if (count($vistas)>0 AND count($consultas) >0) {
+            
+            return view('admin.reportes.diario', compact('tipoconsultas','consultas','vistas'));
+        } else {
+            flash("NO EXISTEN CONSULTAS PARA EL DÍA DE HOY QUE HALLAN SIDO MARCADAS COMO VISTAS!", 'success'); 
+            return redirect()->route('consultas.index');
+        }
+    }
+
+    public function editardiagnostico(Request $request)
+    {
+        dd($request->all());
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PacientesTableSeeder extends Seeder
+class PacientesNtTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,64 @@ class PacientesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pacientes')->insert([
+        DB::table('pacientes_nt')->insert([
+            'nombres' => 'MARGARITA',
+            'apellidos' => 'ACOSTA',
+            'nacionalidad' => 'V',
+            'cedula' => 3935010,
+            'codigo_telf' => '0244',
+            'telefono' => '9893891',
+            'direccion' => 'LA VICTORIA',
+            'edad' => '65',
+            'genero' => 'F',
+            'titular' => 'No',
+            'id_paciente' => 1
+        ]);
+
+        DB::table('pacientes_nt')->insert([
+            'nombres' => 'EDGAR',
+            'apellidos' => 'ROMAN',
+            'nacionalidad' => 'V',
+            'cedula' => 8589896,
+            'codigo_telf' => '0416',
+            'telefono' => '7129542',
+            'direccion' => 'LA VICTORIA',
+            'edad' => '54',
+            'genero' => 'M',
+            'titular' => 'No',
+            'id_paciente' => 2
+        ]);
+
+        DB::table('pacientes_nt')->insert([
+            'nombres' => 'LAILY',
+            'apellidos' => 'CHIRINOS',
+            'nacionalidad' => 'V',
+            'cedula' => 28224702,
+            'codigo_telf' => '0414',
+            'telefono' => '1718518',
+            'direccion' => 'MARACAY',
+            'edad' => '16',
+            'genero' => 'F',
+            'titular' => 'No',
+            'id_paciente' => 3
+        ]);
+
+        DB::table('pacientes_nt')->insert([
+            'nombres' => 'IRMA',
+            'apellidos' => 'ÑAÑES',
+            'nacionalidad' => 'V',
+            'cedula' => 8811394,
+            'codigo_telf' => '0414',
+            'telefono' => '1048996',
+            'direccion' => 'CAGUA',
+            'edad' => '53',
+            'genero' => 'M',
+            'titular' => 'No',
+            'id_paciente' => 4
+        ]);
+
+        //---titulares dentro de pacientes_nt
+        DB::table('pacientes_nt')->insert([
             'nombres' => 'ANA JOSEFINA',
             'apellidos' => 'RAMIREZ',
             'nacionalidad' => 'V',
@@ -19,13 +76,13 @@ class PacientesTableSeeder extends Seeder
             'codigo_telf' => '0416',
             'telefono' => '1233211',
             'direccion' => 'LA VICTORIA',
-            'titular' => 'SI',
-            'institucion' => 'MPPESCT',
             'edad' => '40',
-            'genero' => 'F'
+            'genero' => 'F',
+            'titular' => 'SI',
+            'id_paciente' => 1
         ]);
 
-        DB::table('pacientes')->insert([
+        DB::table('pacientes_nt')->insert([
             'nombres' => 'MANOLO JOSE',
             'apellidos' => 'POCHE CORREA',
             'nacionalidad' => 'V',
@@ -33,13 +90,13 @@ class PacientesTableSeeder extends Seeder
             'codigo_telf' => '0426',
             'telefono' => '1233341',
             'direccion' => 'LA VICTORIA',
-            'titular' => 'SI',
-            'institucion' => 'MPPESCT',
             'edad' => '50',
-            'genero' => 'M'
+            'genero' => 'M',
+            'titular' => 'SI',
+            'id_paciente' => 2
         ]);
 
-        DB::table('pacientes')->insert([
+        DB::table('pacientes_nt')->insert([
             'nombres' => 'CARMEN MARIA',
             'apellidos' => 'COLMENAREZ SANCHEZ',
             'nacionalidad' => 'V',
@@ -47,13 +104,13 @@ class PacientesTableSeeder extends Seeder
             'codigo_telf' => '0412',
             'telefono' => '4332233',
             'direccion' => 'MARACAY',
-            'titular' => 'SI',
-            'institucion' => 'MPPESCT',
             'edad' => '45',
-            'genero' => 'F'
+            'genero' => 'F',
+            'titular' => 'SI',
+            'id_paciente' => 3
         ]);
 
-        DB::table('pacientes')->insert([
+        DB::table('pacientes_nt')->insert([
             'nombres' => 'GLENDYS MARIA',
             'apellidos' => 'MUÑOZ GAMEZ',
             'nacionalidad' => 'V',
@@ -61,13 +118,13 @@ class PacientesTableSeeder extends Seeder
             'codigo_telf' => '0416',
             'telefono' => '2343666',
             'direccion' => 'LA VICTORIA',
-            'titular' => 'SI',
-            'institucion' => 'MPPESCT',
             'edad' => '40',
-            'genero' => 'F'
+            'genero' => 'F',
+            'titular' => 'SI',
+            'id_paciente' => 4
         ]);
 
-        DB::table('pacientes')->insert([
+        DB::table('pacientes_nt')->insert([
             'nombres' => 'KEVIN MATHIAS',
             'apellidos' => 'RON ROJAS',
             'nacionalidad' => 'V',
@@ -75,13 +132,13 @@ class PacientesTableSeeder extends Seeder
             'codigo_telf' => '0416',
             'telefono' => '3345211',
             'direccion' => 'CAGUA',
-            'titular' => 'SI',
-            'institucion' => 'MPPESCT',
             'edad' => '30',
-            'genero' => 'M'
+            'genero' => 'M',
+            'titular' => 'SI',
+            'id_paciente' => 5
         ]);
 
-        DB::table('pacientes')->insert([
+        DB::table('pacientes_nt')->insert([
             'nombres' => 'CARLOS LUIS',
             'apellidos' => 'MARTINEZ AGUILAR',
             'nacionalidad' => 'V',
@@ -89,13 +146,13 @@ class PacientesTableSeeder extends Seeder
             'codigo_telf' => '0414',
             'telefono' => '9987877',
             'direccion' => 'EL CONSEJO',
-            'titular' => 'SI',
-            'institucion' => 'MPPE',
             'edad' => '38',
-            'genero' => 'M'
+            'genero' => 'M',
+            'titular' => 'SI',
+            'id_paciente' => 6
         ]);
 
-        DB::table('pacientes')->insert([
+        DB::table('pacientes_nt')->insert([
             'nombres' => 'SHAKIRA',
             'apellidos' => 'MEBARAK',
             'nacionalidad' => 'E',
@@ -103,13 +160,13 @@ class PacientesTableSeeder extends Seeder
             'codigo_telf' => '0424',
             'telefono' => '3353506',
             'direccion' => 'ZUATA',
-            'titular' => 'SI',
-            'institucion' => 'MPPE',
             'edad' => '49',
-            'genero' => 'F'
+            'genero' => 'F',
+            'titular' => 'SI',
+            'id_paciente' => 7
         ]);
 
-        DB::table('pacientes')->insert([
+        DB::table('pacientes_nt')->insert([
             'nombres' => 'RICARDO',
             'apellidos' => 'ARJONA',
             'nacionalidad' => 'E',
@@ -117,13 +174,13 @@ class PacientesTableSeeder extends Seeder
             'codigo_telf' => '0412',
             'telefono' => '6787878',
             'direccion' => 'TEJERIAS',
-            'titular' => 'SI',
-            'institucion' => 'MPPE',
             'edad' => '63',
-            'genero' => 'M'
+            'genero' => 'M',
+            'titular' => 'SI',
+            'id_paciente' => 8
         ]);
 
-        DB::table('pacientes')->insert([
+        DB::table('pacientes_nt')->insert([
             'nombres' => 'JUSTIN',
             'apellidos' => 'BIEBER',
             'nacionalidad' => 'E',
@@ -131,13 +188,13 @@ class PacientesTableSeeder extends Seeder
             'codigo_telf' => '0416',
             'telefono' => '7784534',
             'direccion' => 'SAN MATEO',
-            'titular' => 'SI',
-            'institucion' => 'MPPE',
             'edad' => '28',
-            'genero' => 'M'
+            'genero' => 'M',
+            'titular' => 'SI',
+            'id_paciente' => 9
         ]);
 
-        DB::table('pacientes')->insert([
+        DB::table('pacientes_nt')->insert([
             'nombres' => 'ALANISSE',
             'apellidos' => 'MORRISETTE',
             'nacionalidad' => 'V',
@@ -145,11 +202,12 @@ class PacientesTableSeeder extends Seeder
             'codigo_telf' => '0424',
             'telefono' => '5674354',
             'direccion' => 'ZUATA',
-            'titular' => 'SI',
-            'institucion' => 'MPPE',
             'edad' => '40',
-            'genero' => 'F'
+            'genero' => 'F',
+            'titular' => 'SI',
+            'id_paciente' => 10
         ]);
 
+        
     }
 }

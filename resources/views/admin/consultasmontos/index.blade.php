@@ -85,7 +85,7 @@
                     <h4 class="modal-title">Eliminar Monto de Consulta</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Esta seguro que desea eliminar este monto de consulta en especifico?...
+                    ¿Esta seguro que desea eliminar este monto de consulta en específico?...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>

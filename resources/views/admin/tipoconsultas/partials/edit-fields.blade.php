@@ -5,5 +5,5 @@
 
 <div class="form-group{{ $errors->has('id_especialidad') ? ' has-error' : '' }}">
 	{!! Form::label('especialidad','* Especialidad') !!}
-	{!! Form::select('id_especialidad',$especialidades,$tipoconsulta->id_especialidad,['class' => 'form-control','required' => 'required', 'title' => 'Seleccione la Especialidad', 'style'=>$errors->has('consulta') ? 'border-color: red; border: 1px solid red;': '']) !!}
+	{!! Form::select('id_especialidad',$especialidades,$tipoconsulta->id_especialidad,['class' => 'form-control select2','required' => 'required', 'title' => 'Seleccione la Especialidad', 'style'=>$errors->has('consulta') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>

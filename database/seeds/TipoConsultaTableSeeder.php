@@ -48,203 +48,203 @@ class TipoConsultaTableSeeder extends Seeder
             'id_especialidad' => 9
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'ECOSONOGRAMA ABDOMINAL',
+        	'consulta' => 'ECO ABDOMINAL',
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'ECOSONOGRAMA DE MAMA',
+        	'consulta' => 'ECO DE MAMA',
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'ECOSONOGRAMA RENAL',
+        	'consulta' => 'ECO RENAL',
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'ECOSONOGRAMA DE PRÓSTATA',
+        	'consulta' => 'ECO DE PRÓSTATA',
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'ECOSONOGRAMA DE TIROIDE',
+        	'consulta' => 'ECO DE TIROIDE',
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'ECOSONOGRAMA DE PARTES BLANDAS',
+        	'consulta' => 'ECO DE PARTES BLANDAS',
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'ECOSONOGRAMA TESTICULAR',
+        	'consulta' => 'ECO TESTICULAR',
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'ECOSONOGRAMA PÉLVICO',
+        	'consulta' => 'ECO PÉLVICO',
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'ECOSONOGRAMA GINECOLÓGICO',
+        	'consulta' => 'ECO GINECOLÓGICO',
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'ECOSONOGRAMA OBSTÉTRICO',
+        	'consulta' => 'ECO OBSTÉTRICO',
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO HEMATOLOGÍA COMPLETA',
+        	'consulta' => 'HEMATOLOGÍA COMPLETA',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO GLICEMIA',
+        	'consulta' => 'GLICEMIA',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO ÚREA',
+        	'consulta' => 'ÚREA',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO CREATININA',
+        	'consulta' => 'CREATININA',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO COLESTEROL',
+        	'consulta' => 'COLESTEROL',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO TRIGLICÉRIDOS',
+        	'consulta' => 'TRIGLICÉRIDOS',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO HDL-COLESTEROL',
+        	'consulta' => 'HDL-COLESTEROL',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO LDL-COLESTEROL',
+        	'consulta' => 'LDL-COLESTEROL',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO ÁCIDO ÚRICO',
+        	'consulta' => 'ÁCIDO ÚRICO',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO TGO/ASAT',
+        	'consulta' => 'TGO/ASAT',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO TGP/ALAT',
+        	'consulta' => 'TGP/ALAT',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO BILIRRUBINA TOTAL',
+        	'consulta' => 'BILIRRUBINA TOTAL',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO BILIRRUBINA DIRECTA',
+        	'consulta' => 'BILIRRUBINA DIRECTA',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO BILIRRUBINA INDIRECTA',
+        	'consulta' => 'BILIRRUBINA INDIRECTA',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO PROTEÍNAS TOTALES',
+        	'consulta' => 'PROTEÍNAS TOTALES',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO ALBUMINA',
+        	'consulta' => 'ALBUMINA',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO GLOBULINAS',
+        	'consulta' => 'GLOBULINAS',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO CALCIO',
+        	'consulta' => 'CALCIO',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO FÓSFORO',
+        	'consulta' => 'FÓSFORO',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO ÁCIDO ÚRICO/CREATININA',
+        	'consulta' => 'ÁCIDO ÚRICO/CREATININA',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO CALCIO/CREATININA',
+        	'consulta' => 'CALCIO/CREATININA',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO FÓSFORO/CREATININA',
+        	'consulta' => 'FÓSFORO/CREATININA',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO RATEST',
+        	'consulta' => 'RATEST',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO PERFIL TIROIDEO',
+        	'consulta' => 'PERFIL TIROIDEO',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO PERFIL LIPÍDICO',
+        	'consulta' => 'PERFIL LIPÍDICO',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO UROANÁLISIS(ORINA)',
+        	'consulta' => 'UROANÁLISIS(ORINA)',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO COPROANÁLISIS(HECES)',
+        	'consulta' => 'COPROANÁLISIS(HECES)',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO SANGRE OCULTA EN HECES',
+        	'consulta' => 'SANGRE OCULTA EN HECES',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO A.S.T.O.',
+        	'consulta' => 'A.S.T.O.',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO PRE-OPERATORIOS',
+        	'consulta' => 'PRE-OPERATORIOS',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO ROTAVIRUS EN HECES',
+        	'consulta' => 'ROTAVIRUS EN HECES',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO VSG',
+        	'consulta' => 'VSG',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO VDRL',
+        	'consulta' => 'VDRL',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO H.I.V.',
+        	'consulta' => 'H.I.V.',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO SEROLOGÍA DE DENGUE',
+        	'consulta' => 'SEROLOGÍA DE DENGUE',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO PT-PTT',
+        	'consulta' => 'PT-PTT',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO PCR',
+        	'consulta' => 'PCR',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO HCG(PRUEBA DE EMBARAZO)',
+        	'consulta' => 'HCG(PRUEBA DE EMBARAZO)',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO GRUPO SANGUÍNEO',
+        	'consulta' => 'GRUPO SANGUÍNEO',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([
-        	'consulta' => 'LABORATORIO CLÍNICO PERFIL HEPÁTICO',
+        	'consulta' => 'PERFIL HEPÁTICO',
             'id_especialidad' => 11
         ]);
         DB::table('tipo_consulta')->insert([

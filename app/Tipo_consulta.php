@@ -15,7 +15,7 @@ class Tipo_consulta extends Model
     }
     public function consultasmontos(){
 
-    	return $this->hasOne('App\ConsultasMontos','id_tipoconsultas','id');
+    	return $this->hasMany('App\ConsultasMontos','id_tipoconsulta','id');
     }
 
     

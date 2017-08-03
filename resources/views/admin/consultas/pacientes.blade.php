@@ -28,18 +28,18 @@
                 @foreach($consultas as $consulta)
                 <tr>
                     <td>{{$num=$num+1}}</td>
-                    <td>{{$consulta->pacientes->nombres}}</td>
-                    <td>{{$consulta->pacientes->apellidos}}</td>
-                    <td>{{$consulta->pacientes->nacionalidad}}-{{$consulta->pacientes->cedula}}</td> 
+                    <td>{{$consulta->pacientesnt->nombres}}</td>
+                    <td>{{$consulta->pacientesnt->apellidos}}</td>
+                    <td>{{$consulta->pacientesnt->nacionalidad}}-{{$consulta->pacientesnt->cedula}}</td> 
                     <td>
                         <div class="btn-group">
-                          <a href="{{ route('admin.consultas.verconsultas', [$consulta->id_paciente]) }}">
+                          <a href="{{ route('admin.consultas.verconsultas', [$consulta->id_pacientent]) }}">
                             <button class="btn btn-info btn-flat" title="Presionando este botón puede ver las consultas que el paciente registró hoy">
                               <i class="fa fa-eye"></i>
                             </button></a>
 
                           <a href="#" >
-                            <button onclick="consulta({{ $consulta->id_paciente }})" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede descargar en archivo excel el reporte por persona en formato excel" >
+                            <button onclick="consulta({{ $consulta->id_pacientent }})" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede descargar en archivo excel el reporte por persona en formato excel" >
                               <i class="fa fa-file-excel-o"></i>
                             </button>
                           </a>
@@ -74,10 +74,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminar Paciente</h4>
+                    <h4 class="modal-title">Eliminar Paciente de la consulta</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Esta seguro que desea eliminar este consulta en especifico?...
+                    ¿Esta seguro que desea eliminar esta consulta en específico?...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>

@@ -10,7 +10,7 @@
         <div class="col-xs-11">
             <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Consultas de fechas anteriores a hoy2...</h3>
+              <h3 class="box-title">Consultas de fechas anteriores a hoy...</h3>
               
             </div>
             <!-- /.box-header -->
@@ -24,6 +24,7 @@
                   <th>Tipo</th>	
                   <th>Monto</th>
                   <th>Fecha</th>
+                  <th>Diagnóstico</th>
                   <th>Opciones</th>
                 </tr>
                 </thead>
@@ -32,14 +33,13 @@
                 @if($consulta->estado!="Eliminada")
                 <tr>
                     <td>{{$num=$num+1}}</td>
-                    <td>{{$consulta->pacientes->nacionalidad}}-{{$consulta->pacientes->cedula}} {{$consulta->pacientes->apellidos}}, {{$consulta->pacientes->nombres}} </td>
+                    <td>{{$consulta->pacientesnt->nacionalidad}}-{{$consulta->pacientesnt->cedula}} {{$consulta->pacientesnt->apellidos}}, {{$consulta->pacientesnt->nombres}} </td>
                     <td>{{$consulta->consultasmontos->tipoconsultas->especialidades->especialidad}}</td>
                     <td>{{$consulta->consultasmontos->tipoconsultas->consulta}}</td>
                     <td> {{$consulta->consultasmontos->monto}} </td>
                     <td> {{ $consulta->fecha }} </td>
-                    <td>
-                        
-                      </td>
+                    <td> {{ $consulta->diagnostico }} </td>
+                    <td></td>
                 </tr>
                 @endif
                 @endforeach
@@ -52,6 +52,7 @@
                   <th>Tipo</th>
                   <th>Estado</th>
                   <th>Fecha</th>
+                  <th>Diagnóstico</th>
                   <th>Opciones</th>
                 </tr>
                 </tfoot>

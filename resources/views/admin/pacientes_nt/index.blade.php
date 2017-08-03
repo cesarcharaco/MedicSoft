@@ -10,10 +10,10 @@
         <div class="col-xs-11">
             <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Pacientes</h3>
+              <h3 class="box-title">Pacientes No Titulares(Beneficiarios)</h3>
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-            <a href="{{ url('admin/pacientes/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                <i class="fa fa-pencil"></i> Registrar Paciente
+            <a href="{{ url('admin/pacientes_nt/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                <i class="fa fa-pencil"></i> Registrar Paciente No Titular
             </a>
           </div>
             </div>
@@ -30,31 +30,31 @@
                   <th>Dirección</th>
                   <th>Edad</th>
                   <th>Género</th>
-                  <th>MPPE/MPPESCT</th>
+                  <th>Titular</th>
                   <th>Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($pacientes as $paciente)
+                @foreach($pacientes_nt as $paciente_nt)
                 <tr>
                     <td>{{$num=$num+1}}</td>
-                    <td>{{$paciente->nombres}}</td>
-                    <td>{{$paciente->apellidos}}</td>
-                    <td>{{$paciente->nacionalidad}}-{{$paciente->cedula}}</td>
-                    <td>{{$paciente->codigo_telf}}-{{$paciente->telefono}} </td>
-                    <td><?php echo $paciente->direccion; ?> </td>
-                    <td>{{$paciente->edad}} </td>
-                    <td>{{$paciente->genero}} </td>
-                    <td>{{$paciente->institucion}} </td>  
+                    <td>{{$paciente_nt->nombres}}</td>
+                    <td>{{$paciente_nt->apellidos}}</td>
+                    <td>{{$paciente_nt->nacionalidad}}-{{$paciente_nt->cedula}}</td>
+                    <td>{{$paciente_nt->codigo_telf}}-{{$paciente_nt->telefono}} </td>
+                    <td><?php echo $paciente_nt->direccion; ?> </td>
+                    <td>{{$paciente_nt->edad}} </td>
+                    <td>{{$paciente_nt->genero}} </td>
+                    <td>{{$paciente_nt->pacientes->nacionalidad}}-{{$paciente_nt->pacientes->cedula}} {{$paciente_nt->pacientes->apellidos}}, {{$paciente_nt->pacientes->nombres}}</td>  
                     <td>
                         <div class="btn-group">
-                          <a href="{{ route('pacientes.edit', [$paciente->id]) }}">
+                          <a href="{{ route('pacientes_nt.edit', [$paciente_nt->id]) }}">
                             <button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro">
                               <i class="fa fa-pencil"></i>
                             </button></a>
 
                           <a href="#" >
-                            <button onclick="paciente({{ $paciente->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" >
+                            <button onclick="paciente({{ $paciente_nt->id }})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede eliminar el registro" >
                               <i class="fa fa-trash"></i>
                             </button>
                           </a>
@@ -74,7 +74,7 @@
                   <th>Dirección</th>
                   <th>Edad</th>
                   <th>Género</th>
-                  <th>MPPE/MPPESCT</th>
+                  <th>Titular</th>
                   <th>Opciones</th>
                 </tr>
                 </tfoot>
@@ -102,7 +102,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 
-                    {!! Form::open(['route' => ['pacientes.destroy',0133], 'method' => 'DELETE']) !!}
+                    {!! Form::open(['route' => ['pacientes_nt.destroy',0133], 'method' => 'DELETE']) !!}
                         <input type="hidden" id="paciente" name="id">
                         <button type="submit" class="btn btn-primary">Aceptar</button>
                     {!! Form::close() !!}

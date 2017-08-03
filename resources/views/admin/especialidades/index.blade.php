@@ -76,7 +76,7 @@
                     <h4 class="modal-title">Eliminar Especialidad</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Esta seguro que desea eliminar esta especialidad en especifico?...
+                    ¿Esta seguro que desea eliminar esta especialidad en específico?...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>

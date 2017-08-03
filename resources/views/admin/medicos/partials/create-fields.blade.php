@@ -1,6 +1,6 @@
 <div class="form-group">
 	{!! Form::label('especialidad','Especialidad') !!}
-	<select name="id_especialidad" title="Seleccione la Especialidad del Médico" required="required" class="form-control">
+	<select name="id_especialidad" title="Seleccione la Especialidad del Médico" required="required" class="form-control select2">
 		@if(count($espec_listas)>0)
 			@foreach($especialidades as $especialidad)
 				<?php $cont=0; ?>
@@ -34,7 +34,7 @@
 <div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">
 	{!! Form::label('cedula','* Cédula') !!}
 	
-	<select class="form-control" style="width: 70px;" name="nacionalidad" id="nacionalidad" title="Seleccione la nacionalidad del paciente" >
+	<select class="form-control select2" style="width: 70px;" name="nacionalidad" id="nacionalidad" title="Seleccione la nacionalidad del paciente" >
 		<option value="V">V</option>
 		<option value="E">E</option>
 	</select>
@@ -43,7 +43,7 @@
 
 <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
 	{!! Form::label('telefono','* Teléfono') !!}
-	<select name="codigo_telf" id="codigo_telf" style="width: 80px;" class="form-control" title="Seleccione el código del número telefónico">
+	<select name="codigo_telf" id="codigo_telf" style="width: 80px;" class="form-control select2" title="Seleccione el código del número telefónico">
 		<option value="0244">0244</option>
 		<option value="0412">0412</option>
 		<option value="0414">0414</option>
@@ -56,5 +56,5 @@
 
 <div class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">
 	{!! Form::label('direccion','* Dirección') !!}
-	{!! Form::textarea('direccion', null, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Ej: Calle Manhattan, casa nro. 4', 'title' => 'Ingrese la dirección del paciente', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('direccion') ? 'border-color: red; border: 1px solid red;': '']) !!}
+	{!! Form::textarea('direccion', null, ['class' => 'textarea','required' => 'required', 'placeholder' => 'Ej: Calle Manhattan, casa nro. 4', 'title' => 'Ingrese la dirección del paciente','cols' => '100', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('direccion') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>

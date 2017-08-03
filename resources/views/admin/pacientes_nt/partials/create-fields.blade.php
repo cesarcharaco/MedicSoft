@@ -1,16 +1,10 @@
 <div class="form-group">
-	
-	{!! Form::hidden('titular','Si') !!}
-</div>
-
-<div class="form-group">
-	{!! Form::label('titular','* ¿Institución Aseguradora?') !!}
-</div>
-<div class="form-group">
-	{!! Form::label('MPPESCT','MPPESCT') !!}
-	{!! Form::radio('institucion','MPPESCT',true,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación Superior, Ciencia y Tecnología']) !!}
-	{!! Form::label('MPPE','MPPE') !!}
-	{!! Form::radio('institucion','MPPE',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	{!! Form::label('titular','Titular') !!}
+	<select name="id_paciente" id="id_paciente" class="form-control select2" title="Seleccione el Paciente Titular">
+		@foreach($pacientes as $paciente)
+			<option value="{{$paciente->id}}">{{$paciente->nacionalidad}}-{{$paciente->cedula}} {{$paciente->apellidos}}, {{$paciente->nombres}}</option>
+		@endforeach
+	</select>
 </div>
 
 <div class="form-group{{ $errors->has('nombres') ? ' has-error' : '' }}">
@@ -30,6 +24,7 @@
 		<option value="V">V</option>
 		<option value="E">E</option>
 	</select>
+	
 	{!! Form::text('cedula', null, ['class' => 'form-control','placeholder' => 'Ej: 1234567','required' => 'required', 'title' => 'Ingrese la cédula del paciente sin separación por punto(.) o espacios','maxlength' => '8', 'style'=>$errors->has('cedula') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>
 <div class="form-group">

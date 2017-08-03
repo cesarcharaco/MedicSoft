@@ -22,6 +22,7 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('/pacientes','PacientesController');
+	Route::resource('/pacientes_nt','PacientesNtController');
 	Route::resource('/especialidades','EspecialidadesController');
 	Route::resource('/tipoconsultas','TipoConsultaController');
 	Route::resource('/medicos','MedicosController');
@@ -42,6 +43,18 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 	Route::get('/consultas/{id}/verconsultas',[
 		'uses' => 'ConsultasController@verconsultas',
 		'as' => 'admin.consultas.verconsultas'
+		]);
+	Route::get('/reportediario',[
+		'uses' => 'ConsultasController@reportediario',
+		'as' => 'admin.reportediario'
+		]);
+	Route::get('/reportediariovistas',[
+		'uses' => 'ConsultasController@reportediariovistas',
+		'as' => 'admin.reportediariovistas'
+		]);
+	Route::get('/consultas/editardiagnostico',[
+		'uses' => 'ConsultasController@editardiagnostico',
+		'as' => 'admin.consultas.editardiagnostico'
 		]);
 });
 

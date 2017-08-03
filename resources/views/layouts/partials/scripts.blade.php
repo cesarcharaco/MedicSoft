@@ -41,6 +41,23 @@
 <script>
 $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>
+<!-- Select2 -->
+<script src="{{ asset('bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script type="text/javascript">
+  //Initialize Select2 Elements
+    $('.select2').select2()
 
+</script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+</script>
 
 @yield('scripts')

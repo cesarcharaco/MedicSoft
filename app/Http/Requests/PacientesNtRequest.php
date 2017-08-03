@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ConsultasRequest extends FormRequest
+class PacientesNtRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,14 @@ class ConsultasRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_pacientent' => 'required',
-            'id_tipoconsulta' => 'required'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'id_pacientent.required'      => 'No ha selecionado ningún paciente',
-            'id_tipoconsulta.required'    => 'No ha seleccionado ningún tipo de Consulta'
-  
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'cedula' => 'required|digits_between:6,8|numeric',
+            'telefono' => 'required|digits_between:7,7|numeric',
+            'direccion' => 'required',
+            'genero' => 'required',
+            'edad' => 'required|numeric|digits_between:0,99',
+            'id_paciente' => 'required'
         ];
     }
 }

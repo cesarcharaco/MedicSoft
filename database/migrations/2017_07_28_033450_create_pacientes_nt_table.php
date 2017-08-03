@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConsultasTable extends Migration
+class CreatePacientesNtTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,21 @@ class CreateConsultasTable extends Migration
      */
     public function up()
     {
-        Schema::create('consultas', function (Blueprint $table) {
+        Schema::create('pacientes_nt', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombres');
+            $table->string('apellidos');
+            $table->string('nacionalidad',2);
+            $table->string('cedula',8)->unique();
+            $table->string('codigo_telf',4);
+            $table->string('telefono',7);
+            $table->text('direccion');
+            $table->string('edad',2);
+            $table->string('genero',1);
+            $table->string('titular',2);
             $table->integer('id_paciente')->unsigned();
-            $table->integer('id_consultamonto')->unsigned();
-            $table->date('fecha');
-            $table->enum('estado',['En Cola','Vista','Eliminada'])->default('En Cola');
-            $table->string('posicion',2);
-            $table->string('diagnostico',255)->default('Sin diagnosticar');
-
+            
             $table->foreign('id_paciente')->references('id')->on('pacientes')->onDelete('cascade');
-            $table->foreign('id_consultamonto')->references('id')->on('consultas_montos')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +39,6 @@ class CreateConsultasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('consultas');
+        Schema::dropIfExists('pacientes_nt');
     }
 }
