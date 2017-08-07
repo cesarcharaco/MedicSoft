@@ -69,6 +69,19 @@
             </li>
             <li class="active treeview">
                 <a href="#">
+                    <i class="fa fa-medkit"></i> <span>Inventario</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ URL('admin/materiales')}}"><i class="fa fa-circle-o"></i>Materiales</a></li>
+                    <li><a href="{{ URL('admin/materiales/create')}}"><i class="fa fa-circle-o"></i>Nuevo</a></li>
+                    <li><a href="{{ URL('admin/pedidos_oficinas')}}"><i class="fa fa-circle-o"></i>Pedidos Por Oficina</a></li>
+                </ul>
+            </li>
+            <li class="active treeview">
+                <a href="#">
                     <i class="fa fa-gears"></i> <span>Configuracion</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -78,6 +91,7 @@
                     <li class="active"><a href="{{ URL('admin/especialidades')}}"><i class="fa fa-circle-o text-aqua"></i></i>Especialidades</a></li>
                     <li class="active"><a href="{{ URL('admin/tipoconsultas')}}"><i class="fa fa-circle-o text-aqua"></i></i>Tipo de Consultas</a></li>
                     <li class="active"><a href="{{ URL('admin/consultasmontos')}}"><i class="fa fa-circle-o text-red"></i></i>Montos de Consultas</a></li>
+                    <li class="active"><a href="{{ URL('admin/oficinas')}}"><i class="fa fa-circle-o text-aqua"></i></i>Oficinas</a></li>
                 </ul>
             </li>
             <!-- <li class="header">CONFIGURACIÓN</li>

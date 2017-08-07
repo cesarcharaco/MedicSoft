@@ -56,5 +56,9 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 		'uses' => 'ConsultasController@editardiagnostico',
 		'as' => 'admin.consultas.editardiagnostico'
 		]);
+	//para inventario
+	Route::resource('/oficinas','OficinasController');
+	Route::resource('/materiales','MaterialesController');
+	Route::resource('/pedidos_oficinas','PedidosOficinasController');
 });
 
