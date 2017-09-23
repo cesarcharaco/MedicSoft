@@ -48,9 +48,14 @@ class PacientesNtController extends Controller
             flash("LA CÉDULA YA HA SIDO REGISTRADA!", 'error'); 
             return redirect()->route('pacientes_nt.create')->withInput();
         } else {
-           
-            
-            $paciente_nt=Pacientes_nt::create(['nombres' => $request->nombres,
+           //cosultando cuantos pacientes tiene el titular relacionados
+            $paciente=Pacientes_nt::where('id_paciente',$request->id_paciente)->get();
+            if (count($paciente)==5) {
+                flash("DISCULPE, EL TITULAR SELECCIONADO YA TIENE 5 BENEFICIARIOS REGISTRADOS!", 'error'); 
+                return redirect()->route('pacientes_nt.create')->withInput();
+            } else {
+                                    
+                $paciente_nt=Pacientes_nt::create(['nombres' => $request->nombres,
                                          'apellidos' => $request->apellidos,
                                          'nacionalidad' => $request->nacionalidad,
                                          'cedula' => $request->cedula,
@@ -61,10 +66,12 @@ class PacientesNtController extends Controller
                                          'genero' => $request->genero,
                                          'titular' => 'No',
                                          'id_paciente' => $request->id_paciente]);
-            flash("EL REGISTRO HA SIDO EXITOSO!", 'success');            
+                flash("EL REGISTRO HA SIDO EXITOSO!", 'success');     
+                return redirect()->route('pacientes_nt.index');       
+            }
         }
 
-        return redirect()->route('pacientes_nt.index');
+        
         
     }
 

@@ -64,7 +64,7 @@ class ConsultasController extends Controller
             } else {
                 $consulta=Consultas::where('id_pacientent',$request->id_pacientent)->where('fecha',$fecha)->get();
 
-                if (count($consulta)>=2) {
+                if (count($consulta)>=3) {
                     flash("DISCULPE, EL PACIENTE YA LLEGÓ AL LÍMITE DIARIO DE CONSULTAS!", 'error'); 
                     return redirect()->route('consultas.create')->withInput();
                 } else {
@@ -280,7 +280,13 @@ class ConsultasController extends Controller
 
     public function editardiagnostico(Request $request)
     {
-        dd($request->all());
+        
+        $consulta=Consultas::find($request->id_consulta);
+        $consulta->diagnostico=$request->nuevo;
+        $consulta->save();
+
+        flash("DIAGNÓSTICO ACTUALIZADO!", 'success'); 
+            return redirect()->route('consultas.index');
     }
     /**
      * Remove the specified resource from storage.

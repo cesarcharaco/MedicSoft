@@ -52,7 +52,7 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 		'uses' => 'ConsultasController@reportediariovistas',
 		'as' => 'admin.reportediariovistas'
 		]);
-	Route::get('/consultas/editardiagnostico',[
+	Route::post('/consultas/editardiagnostico',[
 		'uses' => 'ConsultasController@editardiagnostico',
 		'as' => 'admin.consultas.editardiagnostico'
 		]);
@@ -60,5 +60,9 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 	Route::resource('/oficinas','OficinasController');
 	Route::resource('/materiales','MaterialesController');
 	Route::resource('/pedidos_oficinas','PedidosOficinasController');
+	Route::get('/pedidos_oficinas/{id}/vermateriales',[
+		'uses' => 'PedidosOficinasController@vermateriales',
+		'as' => 'admin.pedidos_oficinas.vermateriales'
+		]);
 });
 

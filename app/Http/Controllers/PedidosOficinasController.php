@@ -18,7 +18,7 @@ class PedidosOficinasController extends Controller
     {
         $num=0;
         $pedidos_oficinas=PedidosOficinas::all();
-        dd($pedidos_oficinas->oficinas);
+        //dd($pedidos_oficinas->load('materiales'));
         return view('admin.pedidos_oficinas.index', compact('num','pedidos_oficinas'));
     }
 
@@ -49,11 +49,21 @@ class PedidosOficinasController extends Controller
      * @param  \App\PedidosOficinas  $pedidosOficinas
      * @return \Illuminate\Http\Response
      */
-    public function show(PedidosOficinas $pedidosOficinas)
+    public function show()
     {
-        //
+        $num=0;
+        $pedidos_oficinas=PedidosOficinas::all();
+        //dd($pedidos_oficinas->load('materiales'));
+        return view('admin.pedidos_oficinas.show', compact('num','pedidos_oficinas'));
     }
 
+    public function vermateriales($id)
+    {
+        $num=0;
+        $pedidos_oficinas=PedidosOficinas::where('id',$id)->get();
+        //dd($pedidos_oficinas->load('materiales'));
+        return view('admin.pedidos_oficinas.vermateriales', compact('num','pedidos_oficinas'));
+    }
     /**
      * Show the form for editing the specified resource.
      *

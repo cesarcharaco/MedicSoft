@@ -7,7 +7,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-xs-11">
+        <div class="col-xs-12">
             <div class="box">
             <div class="box-header">
               <h3 class="box-title">Pacientes</h3>
@@ -30,7 +30,8 @@
                   <th>Dirección</th>
                   <th>Edad</th>
                   <th>Género</th>
-                  <th>MPPE/MPPESCT</th>
+                  <th>Aseguradora</th>
+                  <th>Cant. Benefs.</th>
                   <th>Opciones</th>
                 </tr>
                 </thead>
@@ -45,7 +46,8 @@
                     <td><?php echo $paciente->direccion; ?> </td>
                     <td>{{$paciente->edad}} </td>
                     <td>{{$paciente->genero}} </td>
-                    <td>{{$paciente->institucion}} </td>  
+                    <td>{{$paciente->institucion}} </td>
+                    <td>{{count($paciente->pacientesnt)}}</td>
                     <td>
                         <div class="btn-group">
                           <a href="{{ route('pacientes.edit', [$paciente->id]) }}">

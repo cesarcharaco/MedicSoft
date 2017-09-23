@@ -48,37 +48,15 @@
                                   <i class="fa fa-trash"></i>
                                 </button>
                               </a>
-                            <br><br>
+                            
+                            <a href="{{ route('admin.pedidos_oficinas.vermateriales', [$pedido->id]) }}">
+                                <button class="btn btn-info btn-flat" title="Presionando este botón puede ver los materiales que se solicitaron en este pedido">
+                                  <i class="fa fa-eye"></i>
+                                </button></a>
                             </div>
                     </td>
-                    <table>
-                        <tr>
-                          <th>Tipo de Material</th>
-                          <th>Descripción</th>
-                          <th>Modelo/Marca</th>
-                          <th>Cantidad</th>
-                          <th>Opciones</th>
-                        </tr>
-                    @foreach($pedido->materiales as $material)
-                      <tr>
-                        <td>{{$pedido->materiales->tipo_material}}</td>
-                        <td>{{$pedido->materiales->descripción}}</td>
-                        <td>{{$pedido->materiales->modelo_marca}}</td>
-                        <td>{{$pedido->materiales->pivot->cantidad}}</td>
-                        <td>
-                            <div class="btn-group">
-                              <a href="#" >
-                                <button onclick="material({{ $pedido->id }},{{$material->id}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede eliminar el registro" >
-                                  <i class="fa fa-trash"></i>
-                                </button>
-                              </a>
-                            <br><br>
-                            </div>
-                          </td>
-                        </tr>
-                        @endforeach
-                      </table>
                 </tr>
+                
                 @endforeach
                 </tbody>
                 <tfoot>
@@ -100,68 +78,33 @@
     </div>
 </div>  
 <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminar El Pedido de ésta Oficina
-                <div class="modal-body">
-                    ¿Esta seguro que desea eliminar este pedido en específico?...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-
-                    {!! Form::open(['route' => ['pedidos_oficinas.destroy',0133], 'method' => 'DELETE']) !!}
-                        <input type="hidden" id="pedido" name="id">
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
-                    {!! Form::close() !!}
-
-                </div>
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Eliminar El Pedido de ésta Oficina</h4>
+            <div class="modal-body">
+                ¿Esta seguro que desea eliminar este pedido en específico?...
             </div>
-        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+
+                {!! Form::open(['route' => ['pedidos_oficinas.destroy',0133], 'method' => 'DELETE']) !!}
+                    <input type="hidden" id="pedido" name="id">
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                {!! Form::close() !!}
+            </div>
+      </div>
     </div>
+  </div>
+</div>
 
    <script type="text/javascript">
 
         function pedido(pedido){
 
             $('#pedido').val(pedido);
-        }
-
-    </script>
-<div id="myModal2" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminar Material del Pedido
-                <div class="modal-body">
-                    ¿Esta seguro que desea eliminar este material en específico?...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-
-                    {!! Form::open(['route' => ['pedidos_oficinas.destroy',0133], 'method' => 'DELETE']) !!}
-                        <input type="hidden" id="pedido" name="id_pedido">
-                        <input type="hidden" name="id_material" id="material">
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
-                    {!! Form::close() !!}
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-   <script type="text/javascript">
-
-        function material(pedido,material){
-
-            $('#material').val(material);
-            $('#pedido').val(pedido)
         }
 
     </script>

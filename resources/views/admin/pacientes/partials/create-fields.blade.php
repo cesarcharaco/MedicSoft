@@ -16,6 +16,8 @@
 <div class="form-group{{ $errors->has('nombres') ? ' has-error' : '' }}">
 	{!! Form::label('nombres','* Nombres') !!}
 	{!! Form::text('nombres',null,['class' => 'form-control','required' => 'required','placeholder' => 'Ej: Martin José', 'title' => 'Ingrese el/los Nombre(s) del Paciente', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('nombres') ? 'border-color: red; border: 1px solid red;': '']) !!}
+
+	
 </div>
 
 <div class="form-group{{ $errors->has('apellidos') ? ' has-error' : '' }}">
@@ -56,7 +58,7 @@
 		<option value="0416">0416</option>
 		<option value="0426">0426</option>
 	</select>
-	{!! Form::text('telefono', null, ['class' => 'form-control','required' => 'required', 'maxlength' => '7','placeholder' => 'Ej: 1234567', 'style'=>$errors->has('telefono') ? 'border-color: red; border: 1px solid red;': '']) !!}
+	{!! Form::text('telefono', null, ['class' => 'form-control','id' => 'phone','required' => 'required', 'maxlength' => '7','placeholder' => 'Ej: 1234567', 'style'=>$errors->has('telefono') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>
 
 <div class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">

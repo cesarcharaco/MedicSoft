@@ -82,7 +82,8 @@
                         @foreach($vistas as $vista)
                           @if($tipo->id == $vista->consultasmontos->id_tipoconsulta AND $vista->id_pacientent==$consulta->id_pacientent)
                             <td>
-                            <button id="diagnostico" value="{{$vista->diagnostico }}" class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede ver el diagnóstico de la consulta" >
+
+                            <button onclick="diagnostico('{{$vista->diagnostico}}')" class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede ver el diagnóstico de la consulta" >
                               <i class="fa fa-eye"></i>
                             </button>
                           
@@ -117,14 +118,14 @@
                 <div class="modal-footer">
                     
 
-                    {!! Form::open(['route' => ['admin.consultas.vistas'], 'method' => 'POST']) !!}
+                    
                         
                         <div class="form-group">
-                          <textarea class="textarea" placeholder="Diagnóstico de la consulta" name="diagnosticos" id="diagnosticos" cols="100" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" rows="3"  ></textarea> 
+                        <p id="diagnosticos" align="left"><span></span></p> 
                         </div>
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
                         
-                    {!! Form::close() !!}
+                   
 
                 </div>
             </div>
@@ -133,16 +134,17 @@
 
    <script type="text/javascript">
 
-        $(document).ready ( function () {
-
-          $("#diagnostico").change( function () {
-
-            $('#diagnosticos').val($("#diagnostico").val());
-
-          });
-
-        });
-
+        
+      function diagnostico(diagnostico){
+          var contenido = diagnostico;
+          var texto = contenido.replace(/<[^>]*>?/g, '');;
+          var temporal = document.createElement("div");
+          temporal.innerHTML = contenido;
+ 
+          var texto = temporal.textContent || temporal.innerText || "";
+            $('#diagnosticos').text(texto);
+      }
+          
     </script>
 
 

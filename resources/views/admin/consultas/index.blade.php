@@ -68,7 +68,7 @@
                         @endif
                         @if($consulta->estado=="Vista")
                             <a href="#" >
-                            <button onclick="editardiagnostico({{ $consulta->id }},{{$consulta->diagnostico}})" class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal3" title="Presionando este botón puede editar el diagnóstico de la consulta" >
+                            <button onclick="editardiagnostico({{ $consulta->id }},'{{$consulta->diagnostico}}')" class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal3" title="Presionando este botón puede editar el diagnóstico de la consulta" >
                               <i class="fa fa-pencil"></i>
                             </button>
                           </a>
@@ -176,12 +176,13 @@
                     
 
                     {!! Form::open(['route' => ['admin.consultas.editardiagnostico'], 'method' => 'POST']) !!}
-                        <input type="text" id="consulta3" name="id_consulta">
+                        <input type="hidden" id="consulta3" name="id_consulta">
                           <div class="form-group">
-
-                          <center>{!! Form::label('diagnostico','DIAGNÓSTICO') !!}</center>
-                          {!! Form::textarea('diagnostico','',['class' => 'textarea', 'placeholder' => 'Ingrese el diagnóstico nuevo', 'name' => 'diagnosticonuevo', 'title' => 'Ingrese el diagnóstico', 'required' => 'required', 'id'=> 'id_diagnostico', 'cols'=> '100', 'style'=> 'width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;', 'rows'=>'3', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase()']) !!}
-                         
+                          
+                          <center>{!! Form::label('diagnostico','DIAGNÓSTICO ANTERIOR') !!}</center>
+                          <strong><p id="anterior" align="left"><span></span></p></strong>
+                          <center>{!! Form::label('diagnostico','DIAGNÓSTICO NUEVO') !!}</center>
+                         <textarea id="nuevo" name="nuevo" required="required" class="textarea" rows="3" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" title="Ingrese el diagnóstico" placeholder="Ingrese el diagnóstico nuevo"></textarea>
                         </div>
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-primary">Editar</button>
@@ -195,9 +196,15 @@
    <script type="text/javascript">
 
         function editardiagnostico(consulta,diagnostico){
-
+          var contenido = diagnostico;
+          var texto = contenido.replace(/<[^>]*>?/g, '');
+          var temporal = document.createElement("div");
+          temporal.innerHTML = contenido;
+ 
+          var texto = temporal.textContent || temporal.innerText || "";
+          
             $('#consulta3').val(consulta);
-            $('#id_diagnostico').val(diagnostico);
+            $('#anterior').text(texto);
         }
         function consulta(consulta){
 

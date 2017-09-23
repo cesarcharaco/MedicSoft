@@ -78,6 +78,7 @@
                     <li class="active"><a href="{{ URL('admin/materiales')}}"><i class="fa fa-circle-o"></i>Materiales</a></li>
                     <li><a href="{{ URL('admin/materiales/create')}}"><i class="fa fa-circle-o"></i>Nuevo</a></li>
                     <li><a href="{{ URL('admin/pedidos_oficinas')}}"><i class="fa fa-circle-o"></i>Pedidos Por Oficina</a></li>
+                    <li><a href="{{ URL('admin/pedidos_oficinas/show')}}"><i class="fa fa-circle-o"></i>Pedidos Por Materiales</a></li>
                 </ul>
             </li>
             <li class="active treeview">
