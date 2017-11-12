@@ -1,6 +1,6 @@
 <div class="form-group">
 	{!! Form::label('titular','Titular') !!}
-	<select name="id_paciente" id="id_paciente" class="form-control select2" title="Seleccione el Paciente Titular">
+	<select name="id_paciente" style="width:100% important!" id="id_paciente" class="form-control select2" title="Seleccione el Paciente Titular">
 		@foreach($pacientes as $paciente)
 			<option value="{{$paciente->id}}">{{$paciente->nacionalidad}}-{{$paciente->cedula}} {{$paciente->apellidos}}, {{$paciente->nombres}}</option>
 		@endforeach
@@ -43,7 +43,7 @@
 </div>
 <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
 	{!! Form::label('telefono','* Teléfono') !!}
-	<select name="codigo_telf" id="codigo_telf" style="width: 80px;" class="form-control select2" title="Seleccione el código del número telefónico">
+	<select name="codigo_telf" id="codigo_telf" style="width: 120px;" class="form-control select2" title="Seleccione el código del número telefónico">
 		<option value="0244">0244</option>
 		<option value="0412">0412</option>
 		<option value="0414">0414</option>

@@ -3,11 +3,11 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Pacientes No Titulares
+        Pacientes No Titulares(Beneficiarios)
         <small>Nuevo Ingreso</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Pacientes No Titulares</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Pacientes No Titulares(Beneficiarios)</a></li>
         <li class="active">Nuevo</li>
     </ol>
 </section>
@@ -17,7 +17,7 @@
             @include('alerts.requests')
             @include('flash::message')
             <div class="panel panel-default">
-                <div class="panel-heading">Registro de Paciente No Titular<br>
+                <div class="panel-heading">Registro de Paciente No Titular(Beneficiario)<br>
                 Los campos con (<strong>*</strong>) son obligatorios</div>
 
                 <div class="panel-body">

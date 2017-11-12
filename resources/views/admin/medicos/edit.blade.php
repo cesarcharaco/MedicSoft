@@ -47,7 +47,7 @@
 
         $("#desbloquear").change( function () {
 
-            if(!$(this).is(":checked")) 
+            if($(this).is(":checked")) 
             {
                     $("#id_especialidad").prop('disabled',false);
                 

@@ -51,7 +51,7 @@
 </div>
 <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
 	{!! Form::label('telefono','* Teléfono') !!}
-	<select name="codigo_telf" id="codigo_telf" style="width: 80px;" class="form-control select2" title="Seleccione el código del número telefónico">
+	<select name="codigo_telf" id="codigo_telf" style="width: 120px;" class="form-control select2" title="Seleccione el código del número telefónico">
 		<option value="0244" @if($paciente_nt->codigo_telf=="0244") selected="selected" @endif >0244</option>
 		<option value="0412" @if($paciente_nt->codigo_telf=="0412") selected="selected" @endif >0412</option>
 		<option value="0414" @if($paciente_nt->codigo_telf=="0414") selected="selected" @endif >0414</option>

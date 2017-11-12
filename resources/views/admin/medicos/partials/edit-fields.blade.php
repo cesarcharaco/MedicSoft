@@ -3,8 +3,8 @@
 	{{$medico->especialidades->especialidad}}
 	<br>
 	{!! Form::label('especialidad','Desea Cambiar?') !!}
-	{!! Form::checkbox('desbloquear','Si',false,['title' => 'Seleccione si desea cambiar la especialidad del médico']) !!}
-	<select name="id_especialidad" title="Seleccione la Especialidad del Médico" required="required" class="form-control select2" disabled="disabled">
+	{!! Form::checkbox('desbloquear','Si',false,['title' => 'Seleccione si desea cambiar la especialidad del médico','id' => 'desbloquear']) !!}
+	<select name="id_especialidad" style="width:100% important!" title="Seleccione la Especialidad del Médico" required="required" class="form-control select2" disabled="disabled" id="id_especialidad">
 		@if(count($espec_listas)>0)
 			@foreach($especialidades as $especialidad)
 				<?php $cont=0; ?>
@@ -47,7 +47,7 @@
 
 <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
 	{!! Form::label('telefono','* Teléfono') !!}
-	<select name="codigo_telf" id="codigo_telf" style="width: 80px;" class="form-control select2" title="Seleccione el código del número telefónico">
+	<select name="codigo_telf" id="codigo_telf" style="width: 120px;" class="form-control select2" title="Seleccione el código del número telefónico">
 		<option value="0244" @if($medico->codigo_telf=="0244") selected="selected" @endif >0244</option>
 		<option value="0412" @if($medico->codigo_telf=="0412") selected="selected" @endif >0412</option>
 		<option value="0414" @if($medico->codigo_telf=="0414") selected="selected" @endif >0414</option>

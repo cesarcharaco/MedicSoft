@@ -6,6 +6,7 @@ use App\Medicos;
 use App\Especialidades;
 use Illuminate\Http\Request;
 use App\Http\Requests\MedicosRequest;
+use App\Http\Requests\MedicosEditRequest;
 use Laracasts\Flash\flash;
 class MedicosController extends Controller
 {
@@ -95,7 +96,7 @@ class MedicosController extends Controller
      * @param  \App\Medicos  $medicos
      * @return \Illuminate\Http\Response
      */
-    public function update(MedicosRequest $request,$id)
+    public function update(MedicosEditRequest $request,$id)
     {
         $medico=Medicos::where('cedula',$request->cedula)->where('id','<>',$id)->first();
 

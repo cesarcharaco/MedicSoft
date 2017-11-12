@@ -40,7 +40,7 @@
                     <td>{{$medico->apellidos}}</td>
                     <td>{{$medico->nacionalidad}}-{{$medico->cedula}}</td>
                     <td>{{$medico->codigo_telf}}-{{$medico->telefono}} </td>
-                    <td>{{$medico->direccion}} </td>
+                    <td><?php echo $medico->direccion; ?> </td>
                     <td>{{$medico->especialidades->especialidad}} </td>
                     <td>
                         <div class="btn-group">
