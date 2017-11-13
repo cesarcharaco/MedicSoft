@@ -47,11 +47,7 @@ class PacientesController extends Controller
             flash("LA CÉDULA YA HA SIDO REGISTRADA!", 'error'); 
             return redirect()->route('pacientes.create')->withInput();
         } else {
-            if ($request->titular!="Si") {
-                $titular="No";
-            } else {
-                $titular="Si";
-            }
+            
             
             $paciente=Pacientes::create(['nombres' => $request->nombres,
                                          'apellidos' => $request->apellidos,
@@ -60,7 +56,7 @@ class PacientesController extends Controller
                                          'codigo_telf' => $request->codigo_telf,
                                          'telefono' => $request->telefono,
                                          'direccion' => $request->direccion,
-                                         'titular' => $titular,
+                                         'titular' => 'Si',
                                          'institucion' => $request->institucion,
                                          'edad' => $request->edad,
                                          'genero' => $request->genero]);

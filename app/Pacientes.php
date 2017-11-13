@@ -8,7 +8,7 @@ class Pacientes extends Model
 {
     protected $table='pacientes';
 
-    protected $fillable=['nombres','apellidos','nacionalidad','cedula','codigo_telf','telefono','direccion','institucion','edad','genero'];
+    protected $fillable=['nombres','apellidos','nacionalidad','cedula','codigo_telf','telefono','direccion','titular','institucion','edad','genero'];
 
        
     public function pacientesnt()
