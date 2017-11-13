@@ -31,7 +31,8 @@ class PedidosOficinasController extends Controller
     {
         $oficinas=Oficinas::pluck('oficina','id');
         $materiales=Materiales::all();
-        return view('admin.pedidos_oficinas.create',compact('oficinas','materiales'));
+        $materiales2=Materiales::all();
+        return view('admin.pedidos_oficinas.create',compact('oficinas','materiales','materiales2'));
     }
 
     /**

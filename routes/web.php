@@ -49,7 +49,7 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 		'as' => 'admin.reportediario'
 		]);
 	Route::get('/reportediariovistas',[
-		'uses' => 'ConsultasController@reportediariovistas',
+		'uses' => '@reportediariovistas',
 		'as' => 'admin.reportediariovistas'
 		]);
 	Route::post('/consultas/editardiagnostico',[

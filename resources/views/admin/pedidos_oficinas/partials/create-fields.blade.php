@@ -22,12 +22,12 @@
 <input type="button" class="btn bg-orange" id="agregar" value="+ Agregar Material" />
 </div>
 <div class="form-group">
-<table id="tabla" class="table table-bordered table-striped">
+<table id="tabla" class="table table-bordered table-striped" responsive="responsive">
 	<thead>
 	<tr>
-		<th>Cant.</th>
-		<th style="text-align: center;">Material</th>
-		<th></th>
+		<div class="col-lg-4 col-md-4 col-xs-4" ><th>Cant.</th></div>
+		<div class="col-lg-4 col-md-4 col-xs-4" ><th style="text-align: center;">Material</th></div>
+		<div class="col-lg-4 col-md-4 col-xs-4" ><th>Opción</th></div>
 	</tr>
 	</thead>
 	<tbody>
@@ -39,8 +39,8 @@
 			</td>
 			<td>
 			<div class="form-group">
-			<select name="id_material[]" class="form-control select2" title="Seleccione El material a solicitar">
-				@foreach($materiales as $key)
+			<select name="id_material[]" style="width:100% important!" class="form-control select2" title="Seleccione El material a solicitar">
+				@foreach($materiales2 as $key)
 					<option value="{{$key->d}}">{{$key->tipo_material}} - {{$key->descripcion}} - {{$key->modelo_marca}}</option>
 				@endforeach
 			</select>
@@ -52,7 +52,7 @@
 			<td width="30">
 			{!! Form::number('cantidad[]',null,['class' => 'form-control', 'style' => 'width:5em','placeholder' => '1','title' => 'Ingrese la cantidad a solicitar por el material', 'min' => '1', 'required' => 'required', 'maxlength' => '4','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}</td>
 			<td>
-			<select name="id_material[]" class="form-control select2" title="Seleccione el material a solicitar">
+			<select name="id_material[]" style="width:100% important!" class="form-control select2" title="Seleccione el material a solicitar">
 				@foreach($materiales as $key)
 					<option value="{{$key->d}}">{{$key->tipo_material}} - {{$key->descripcion}} - {{$key->modelo_marca}}</option>
 				@endforeach
