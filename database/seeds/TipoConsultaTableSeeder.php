@@ -88,6 +88,10 @@ class TipoConsultaTableSeeder extends Seeder
             'id_especialidad' => 10
         ]);
         DB::table('tipo_consulta')->insert([
+            'consulta' => 'LABORATORIO',
+            'id_especialidad' => 11
+        ]);
+        DB::table('tipo_consulta')->insert([
         	'consulta' => 'HEMATOLOGÍA COMPLETA',
             'id_especialidad' => 11
         ]);

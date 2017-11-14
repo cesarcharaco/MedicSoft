@@ -62,6 +62,7 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ URL('admin/consultas')}}"><i class="fa fa-circle-o"></i>Lista del día</a></li>
                     <li><a href="{{ URL('admin/consultas/create')}}"><i class="fa fa-circle-o"></i>Nueva</a></li>
+                    <li><a href="{{ URL('admin/laboratorios',0)}}"><i class="fa fa-circle-o"></i>Laboratorio</a></li>
                     <li><a href="{{ URL('admin/consultas/show')}}"><i class="fa fa-circle-o"></i>Anteriores</a></li>
                     <li><a href="{{ URL('admin/mostrarpacientes')}}"><i class="fa fa-circle-o"></i>Pacientes</a></li>
                     <li><a href="{{ URL('admin/reportediariovistas')}}"><i class="fa fa-circle-o"></i>Reporte diario</a></li>
@@ -93,6 +94,7 @@
                     <li class="active"><a href="{{ URL('admin/tipoconsultas')}}"><i class="fa fa-circle-o text-aqua"></i></i>Tipo de Consultas</a></li>
                     <li class="active"><a href="{{ URL('admin/consultasmontos')}}"><i class="fa fa-circle-o text-red"></i></i>Montos de Consultas</a></li>
                     <li class="active"><a href="{{ URL('admin/oficinas')}}"><i class="fa fa-circle-o text-aqua"></i></i>Oficinas</a></li>
+                    <li class="active"><a href="{{ URL('admin/laboratorios')}}"><i class="fa fa-circle-o text-aqua"></i></i>Laboratorios</a></li>
                 </ul>
             </li>
             <!-- <li class="header">CONFIGURACIÓN</li>

@@ -38,3 +38,46 @@
 </div>
 
 @endsection
+@section('scripts')
+<script type="text/javascript">
+$(document).ready( function(){
+    $("#laboratorio").change( function () {
+
+            if($(this).is(":checked")) 
+            {
+                    $("#id_laboratorio").removeAttr('disabled');
+                
+            } else {
+
+                    $("#id_laboratorio").prop('disabled', true);
+                    
+            }
+        });
+});
+
+
+$("#id_tipoconsulta").on("change", function (event) {
+    var id = event.target.value;
+    $.get("/admin/consultas/"+id+"/buscarmedicos",function (data) {
+       
+
+       $("#id_medico").empty();
+       $("#id_medico").append('<option value="" selected disabled> Seleccione el Médico</option>');
+        
+        if(data.length > 0){
+
+            for (var i = 0; i < data.length ; i++) 
+            {  
+                $("#id_medico").removeAttr('disabled');
+                $("#id_medico").append('<option value="'+ data[i].id + '">' + data[i].apellidos +', '+ data[i].nombres +'</option>');
+            }
+
+        }else{
+            
+            $("#id_medico").attr('disabled', false);
+
+        }
+    });
+});
+</script>
+@endsection

@@ -20,4 +20,8 @@ class Pacientes_nt extends Model
     	return $this->hasMany('App\Consultas','id_pacientent','id');
     }
 
+    public function consultaslab()
+    {
+        return $this->hasMany('App\ConsultasLab','id_pacientent','id');
+    }
 }

@@ -14,4 +14,9 @@ class Medicos extends Model
 
     	return $this->belongsTo('App\Especialidades','id_especialidad');
     }
+
+    public function consultas()
+    {
+    	return $this->hasMany('App\Medicos','id_medico','id');
+    }
 }

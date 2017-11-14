@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConsultasTable extends Migration
+class CreateConsultaslabTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,16 @@ class CreateConsultasTable extends Migration
      */
     public function up()
     {
-        Schema::create('consultas', function (Blueprint $table) {
+        Schema::create('consultaslab', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_pacientent')->unsigned();
-            $table->integer('id_consultamonto')->unsigned();
             $table->date('fecha');
             $table->enum('estado',['En Cola','Vista','Eliminada'])->default('En Cola');
             $table->string('posicion',2);
-            $table->string('diagnostico',255)->default('Sin diagnosticar');
-            $table->integer('id_medico')->unsigned();
+            $table->string('cantidad',1)->default('1');
 
             $table->foreign('id_pacientent')->references('id')->on('pacientes_nt')->onDelete('cascade');
-            $table->foreign('id_consultamonto')->references('id')->on('consultas_montos')->onDelete('cascade');
-            $table->foreign('id_medico')->references('id')->on('medicos')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
@@ -37,6 +34,6 @@ class CreateConsultasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('consultas');
+        Schema::dropIfExists('consultaslab');
     }
 }

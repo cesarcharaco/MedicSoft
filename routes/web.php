@@ -40,16 +40,23 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 		'uses' => 'ConsultasController@mostrarpacientes',
 		'as' => 'admin.mostrarpacientes'
 		]);
+	
+	Route::resource('/laboratorios','LaboratoriosController');
+
 	Route::get('/consultas/{id}/verconsultas',[
 		'uses' => 'ConsultasController@verconsultas',
 		'as' => 'admin.consultas.verconsultas'
+		]);
+	Route::get('/consultas/{id}/buscarmedicos',[
+		'uses' => 'ConsultasController@mostrarmedicos',
+		'as' => 'admin.consultas.buscarmedicos'
 		]);
 	Route::get('/reportediario',[
 		'uses' => 'ConsultasController@reportediario',
 		'as' => 'admin.reportediario'
 		]);
 	Route::get('/reportediariovistas',[
-		'uses' => '@reportediariovistas',
+		'uses' => 'ConsultasController@reportediariovistas',
 		'as' => 'admin.reportediariovistas'
 		]);
 	Route::post('/consultas/editardiagnostico',[

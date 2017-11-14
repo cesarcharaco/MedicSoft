@@ -16,7 +16,7 @@ class Especialidades extends Model
 
     public function medicos(){
 
-    	return $this->hasOne('App\Medicos','id_especialidad');
+    	return $this->hasMany('App\Medicos','id_especialidad','id');
     }
 
     public function horarios()

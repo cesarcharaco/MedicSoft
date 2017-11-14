@@ -11,7 +11,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ConsultasRequest;
 use Laracasts\Flash\flash;
 use Excel;
-
+use App\ConsultasLab;
+use App\ConsultasLaboratorios;
+use App\laboratorios;
 class ConsultasController extends Controller
 {
     /**
@@ -37,8 +39,9 @@ class ConsultasController extends Controller
     {
         $pacientesnt=Pacientes_nt::all();
         $tipoconsultas=Tipo_consulta::all();
+        $laboratorios=laboratorios::where('disponibilidad','Si')->get();
 
-        return view('admin.consultas.create', compact('pacientesnt','tipoconsultas'));
+        return view('admin.consultas.create', compact('pacientesnt','tipoconsultas','laboratorios'));
     }
 
     /**
@@ -68,7 +71,9 @@ class ConsultasController extends Controller
                     flash("DISCULPE, EL PACIENTE YA LLEGÓ AL LÍMITE DIARIO DE CONSULTAS!", 'error'); 
                     return redirect()->route('consultas.create')->withInput();
                 } else {
-                    //verificando posicion
+                //  en caso dado de que seleccione laboratorio
+                    if ($request->laboratorio=="") {
+                             //verificando posicion
                     $consulta=Consultas::where('id_consultamonto',$consultamonto->id)->where('fecha',$fecha)->get()->last();
                         
                         if (count($consulta)>0) {
@@ -79,6 +84,7 @@ class ConsultasController extends Controller
                             $consulta->id_consultamonto=$consultamonto->id;
                             $consulta->fecha=$fecha;
                             $consulta->posicion=$posicion+1;
+                            $consulta->id_medico=$request->id_medico;
                             $consulta->save();    
                             } else {
                                 //falta la busqueda de cuantas veces al mes se ha visto por esta consulta
@@ -87,11 +93,60 @@ class ConsultasController extends Controller
                             $consulta->id_consultamonto=$consultamonto->id;
                             $consulta->fecha=$fecha;
                             $consulta->posicion=1;
+                            $consulta->id_medico=$request->id_medico;
                             $consulta->save();
                             }
-                                                           
+
                             flash("EL REGISTRO HA SIDO EXITOSO!", 'success'); 
                             return redirect()->route('consultas.index');
+                    } else {
+                              
+                        //registrando consulta de laboratorio
+                        //verifiando que ya tiene un numero en laboratorio
+                        $consultalab=ConsultasLab::where('id_pacientent',$request->id_pacientent)->where('fecha',$fecha)->get()->last();
+
+                        if (count($consultalab)>0) {
+                            flash("DISCULPE, EL PACIENTE YA SE ENCUENTRA PARA HOY REGISTRADO PARA LABORATORIO!", 'error'); 
+                            return redirect()->route('consultas.create')->withInput();
+                        } else {
+                            //calculando el numero
+                            $consultalab=ConsultasLab::all();
+                            $posicion=count($consultalab)+1;
+
+                            $consultalabx=ConsultasLab::create(['id_pacientent' => $request->id_pacientent,
+                                'fecha' => $fecha,
+                                'estado' => 'En Cola',
+                                'posicion' => $posicion,
+                                'cantidad' => '1']);
+                            //verificando posicion
+                    $consulta=Consultas::where('id_consultamonto',$consultamonto->id)->where('fecha',$fecha)->get()->last();
+                        
+                        if (count($consulta)>0) {
+                            $posicion=$consulta->posicion;
+                            //falta la busqueda de cuantas veces al mes se ha visto por esta consulta
+                            $consulta= new Consultas();
+                            $consulta->id_pacientent=$request->id_pacientent;
+                            $consulta->id_consultamonto=$consultamonto->id;
+                            $consulta->fecha=$fecha;
+                            $consulta->posicion=$posicion+1;
+                            $consulta->id_medico=$request->id_medico;
+                            $consulta->save();    
+                            } else {
+                                //falta la busqueda de cuantas veces al mes se ha visto por esta consulta
+                            $consulta= new Consultas();
+                            $consulta->id_pacientent=$request->id_pacientent;
+                            $consulta->id_consultamonto=$consultamonto->id;
+                            $consulta->fecha=$fecha;
+                            $consulta->posicion=1;
+                            $consulta->id_medico=$request->id_medico;
+                            $consulta->save();
+                            }
+
+                            flash("EL REGISTRO HA SIDO EXITOSO!", 'success'); 
+                            return redirect()->route('consultas.index');                           
+                        }
+                    
+                    }        
                 }
                 
             }
@@ -109,6 +164,12 @@ class ConsultasController extends Controller
         
     }
 
+    public function mostrarmedicos($id)
+    {
+        $consultas=Tipo_consulta::find($id);
+
+        return $consultas->especialidades->medicos;
+    }
     public function verconsultas($id)
     {
         $fecha=date('Y-m-d');
@@ -237,6 +298,7 @@ class ConsultasController extends Controller
     }
     public function reportediario()
     {
+        
         $fecha=date('Y-m-d');
         $tipoconsultas=Tipo_consulta::all();
         $consultas=Consultas::select('id_pacientent')->where('fecha',$fecha)->where('estado','Vista')->groupBy('id_pacientent')->get();
