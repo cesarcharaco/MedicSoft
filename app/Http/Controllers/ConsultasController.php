@@ -13,7 +13,7 @@ use Laracasts\Flash\flash;
 use Excel;
 use App\ConsultasLab;
 use App\ConsultasLaboratorios;
-use App\laboratorios;
+use App\Laboratorios;
 class ConsultasController extends Controller
 {
     /**
@@ -39,8 +39,11 @@ class ConsultasController extends Controller
     {
         $pacientesnt=Pacientes_nt::all();
         $tipoconsultas=Tipo_consulta::all();
-        $laboratorios=laboratorios::where('disponibilidad','Si')->get();
-
+        $laboratorios=Laboratorios::where('disponibilidad','Si')->get();
+        //dd($laboratorios);
+        // foreach ($laboratorios as $key) {
+        //     echo "id ".$key->id_tipoconsulta." disponibilidad: ".$key->disponibilidad."<br>";
+        // }
         return view('admin.consultas.create', compact('pacientesnt','tipoconsultas','laboratorios'));
     }
 
@@ -50,10 +53,13 @@ class ConsultasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ConsultasRequest $request)
+    public function store(Request $request)
     {
         //dd($request->all());
         $fecha=date('Y-m-d');
+        //dd($request->laboratorio);
+        if ($request->id_tipoconsulta!==NULL) {
+            
         $consultamonto=ConsultasMontos::where('id_tipoconsulta',$request->id_tipoconsulta)->get()->last();
         if (count($consultamonto)==0) {
             flash("DISCULPE, NO SE PUEDE REGISTRAR LA CONSULTA YA QUE LA MISMA AÚN SE ENCUENTRA SIN UN MONTO DE PAGO!", 'error'); 
@@ -72,8 +78,12 @@ class ConsultasController extends Controller
                     return redirect()->route('consultas.create')->withInput();
                 } else {
                 //  en caso dado de que seleccione laboratorio
-                    if ($request->laboratorio=="") {
+                    if ($request->laboratorio==NULL) {
                              //verificando posicion
+                        if($request->id_medico=="placeholder"){
+                            flash("DISCULPE, NO INDICÓ EL MÉDICO DE LA ESPECIALIDAD!", 'error'); 
+                        return redirect()->route('consultas.create')->withInput();
+                        }else{
                     $consulta=Consultas::where('id_consultamonto',$consultamonto->id)->where('fecha',$fecha)->get()->last();
                         
                         if (count($consulta)>0) {
@@ -88,6 +98,7 @@ class ConsultasController extends Controller
                             $consulta->save();    
                             } else {
                                 //falta la busqueda de cuantas veces al mes se ha visto por esta consulta
+                            
                             $consulta= new Consultas();
                             $consulta->id_pacientent=$request->id_pacientent;
                             $consulta->id_consultamonto=$consultamonto->id;
@@ -95,10 +106,12 @@ class ConsultasController extends Controller
                             $consulta->posicion=1;
                             $consulta->id_medico=$request->id_medico;
                             $consulta->save();
+
                             }
 
-                            flash("EL REGISTRO HA SIDO EXITOSO!", 'success'); 
+                            flash("EL REGISTRO DE LA CONSULTA HA SIDO EXITOSO!", 'success'); 
                             return redirect()->route('consultas.index');
+                    }
                     } else {
                               
                         //registrando consulta de laboratorio
@@ -110,14 +123,25 @@ class ConsultasController extends Controller
                             return redirect()->route('consultas.create')->withInput();
                         } else {
                             //calculando el numero
+                            if (count($request->id_laboratorio)==0) {
+                                flash("DISCULPE, INDICÓ QUE REALIZARÁ EXAMENES DE LABORATORIO PERO NO SELECCIONÓ NINGUNO!", 'error'); 
+                            return redirect()->route('consultas.create')->withInput();
+                            } else {
                             $consultalab=ConsultasLab::all();
                             $posicion=count($consultalab)+1;
 
                             $consultalabx=ConsultasLab::create(['id_pacientent' => $request->id_pacientent,
                                 'fecha' => $fecha,
                                 'estado' => 'En Cola',
-                                'posicion' => $posicion,
-                                'cantidad' => '1']);
+                                'posicion' => $posicion]);
+                            //registrando examenes
+                            for ($i=0; $i < count($request->id_laboratorio); $i++) { 
+                                $examenes=ConsultasLaboratorios::create(['id_consultalab' => $consultalabx->id,
+                                    'id_tipoconsulta' => $request->id_laboratorio[$i],'cantidad' => '1']);    
+                            }
+
+                            }
+                            
                             //verificando posicion
                     $consulta=Consultas::where('id_consultamonto',$consultamonto->id)->where('fecha',$fecha)->get()->last();
                         
@@ -142,7 +166,7 @@ class ConsultasController extends Controller
                             $consulta->save();
                             }
 
-                            flash("EL REGISTRO HA SIDO EXITOSO!", 'success'); 
+                            flash("EL REGISTRO DE LA CONSULTA HA SIDO EXITOSO!", 'success'); 
                             return redirect()->route('consultas.index');                           
                         }
                     
@@ -152,8 +176,49 @@ class ConsultasController extends Controller
             }
             
         }
+    
+    } else {
+        //dd($request->laboratorio);
+        if ($request->laboratorio=="Si" and $request->id_tipoconsulta==NULL) {
+            //registrando consulta de laboratorio
+            //verifiando que ya tiene un numero en laboratorio
+            $consultalab=ConsultasLab::where('id_pacientent',$request->id_pacientent)->where('fecha',$fecha)->get()->last();
+
+            if (count($consultalab)>0) {
+                flash("DISCULPE, EL PACIENTE YA SE ENCUENTRA PARA HOY REGISTRADO PARA LABORATORIO!", 'error'); 
+                return redirect()->route('consultas.create')->withInput();
+            } else {
+                if (count($request->id_laboratorio)==0) {
+                    flash("DISCULPE, INDICÓ QUE REALIZARÁ EXAMENES DE LABORATORIO PERO NO SELECCIONÓ NINGUNO!", 'error'); 
+                return redirect()->route('consultas.create')->withInput();
+                } else {
+                    
+                //calculando el numero
+                $consultalab=ConsultasLab::all();
+                $posicion=count($consultalab)+1;
+
+                $consultalabx=ConsultasLab::create(['id_pacientent' => $request->id_pacientent,
+                    'fecha' => $fecha,
+                    'estado' => 'En Cola',
+                    'posicion' => $posicion]);
+                    //registrando examenes
+                    for ($i=0; $i < count($request->id_laboratorio); $i++) { 
+                        $examenes=ConsultasLaboratorios::create(['id_consultalab' => $consultalabx->id,
+                            'id_tipoconsulta' => $request->id_laboratorio[$i],'cantidad' => '1']);    
+                    }
+                    flash("OONSULTA REGISTRADA CON ÉXITO!", 'success'); 
+                return redirect()->route('laboratorios.show',0);
+                }
+            }  
+        }else{
+            if ($request->laboratorio==NULL and $request->id_tipoconsulta==NULL) {
+                flash("DISCULPE, NO INDICÓ NIGUNA CONSULTA Y NINGÚN EXÁMEN DE LABORATORIO, INTÉNTELO DE NUEVO!", 'error'); 
+                return redirect()->route('consultas.create')->withInput();
+            }
+        } 
         
-    }
+        }//fin del else para cuando se seleccionó la consulta
+    }//fin de la funcion
     public function mostrarpacientes(Request $request)
     {
         $fecha=date('Y-m-d');
@@ -274,12 +339,14 @@ class ConsultasController extends Controller
                             $consulta= Consultas::find($id);
                             $consulta->id_consultamonto=$consultamonto->id;
                             $consulta->posicion=$posicion+1;
+                            $consulta->id_medico=$request->id_medico;
                             $consulta->save();    
                             } else {
                                 //falta la busqueda de cuantas veces al mes se ha visto por esta consulta
                             $consulta= Consultas::find($id);
                             $consulta->id_consultamonto=$consultamonto->id;
                             $consulta->posicion=1;
+                            $consulta->id_medico=$request->id_medico;
                             $consulta->save();
                             }
                                                            

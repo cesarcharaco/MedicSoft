@@ -8,7 +8,8 @@
 </div>
 <div class="form-group{{ $errors->has('id_tipoconsulta') ? ' has-error' : '' }}">
 	{!! Form::label('consulta','* Consulta') !!}
-	<select class="form-control select2" id="id_tipoconsulta" name="id_tipoconsulta" title="Seleccione la Consulta" required="required" >
+	<select class="form-control select2" id="id_tipoconsulta" name="id_tipoconsulta" title="Seleccione la Consulta" >
+	<option value="">NINGUNA</option>
 		@foreach($tipoconsultas as $tipo)
 			@if($tipo->especialidades->especialidad!="LABORATORIO")
 			<option value="{{$tipo->id}}"> {{$tipo->consulta}} - Especialidad: {{$tipo->especialidades->especialidad}} </option>
@@ -27,9 +28,9 @@
 <div class="form-group{{ $errors->has('id_laboratorio') ? ' has-error' : '' }}">
 	{!! Form::label('consultalab','* Exámenes de Laboratorios') !!}
 	<select class="form-control select2" name="id_laboratorio[]" id="id_laboratorio" title="Seleccione la Consulta" disabled="disabled" multiple="multiple" >
-		@foreach($tipoconsultas as $tipo)
-			@if($tipo->especialidades->especialidad=="LABORATORIO" and $tipo->consulta!="LABORATORIO")
-			<option value="{{$tipo->id}}"> {{$tipo->consulta}} </option>
+		@foreach($laboratorios as $key)
+			@if($key->tipoconsulta->consulta!="LABORATORIO")
+			<option value="{{$key->id_tipoconsulta}}"> {{$key->tipoconsulta->consulta}} </option>
 			@endif
 		@endforeach
 	</select>

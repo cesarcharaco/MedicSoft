@@ -8,7 +8,7 @@ class ConsultasLab extends Model
 {
     protected $table='consultaslab';
 
-    protected $fillable=['id_pacientent','fecha','estado','posicion','cantidad'];
+    protected $fillable=['id_pacientent','fecha','estado','posicion'];
 
     public function pacientesnt()
     {

@@ -17,6 +17,8 @@ class CreateLaboratoriosTable extends Migration
             $table->increments('id');
             $table->integer('id_tipoconsulta')->unsigned();
             $table->enum('disponibilidad',['Si','No'])->default('Si');
+
+            $table->foreign('id_tipoconsulta')->references('id')->on('tipo_consulta')->onDelete('cascade');
             $table->timestamps();
         });
     }

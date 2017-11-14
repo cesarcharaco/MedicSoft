@@ -8,7 +8,7 @@ class Laboratorios extends Model
 {
     protected $table='laboratorios';
 
-    protected $fillable=['id_tipoconsulta','dsponiblidad'];
+    protected $fillable=['id_tipoconsulta','disponiblidad'];
 
     public function tipoconsulta()
     {

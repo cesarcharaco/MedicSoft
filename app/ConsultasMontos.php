@@ -19,8 +19,5 @@ class ConsultasMontos extends Model
     	return $this->hasMany('App\Consultas','id_consultamonto','id');
     }
 
-    public function consultaslaboratorios()
-    {
-    	return $this->belongsTo('App\ConsultasLaboratorios','id_consultamonto','id');
-    }
+    
 }

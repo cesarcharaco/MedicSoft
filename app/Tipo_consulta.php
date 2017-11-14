@@ -23,4 +23,5 @@ class Tipo_consulta extends Model
     	return $this->hasMany('App\Laboratorios','id_tipoconsulta','id');	
     }    
     
+    
 }

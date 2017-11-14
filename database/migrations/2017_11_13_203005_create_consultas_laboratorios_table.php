@@ -16,10 +16,11 @@ class CreateConsultasLaboratoriosTable extends Migration
         Schema::create('consultas_laboratorios', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_consultalab')->unsigned();
-            $table->integer('id_consultamonto')->unsigned();
+            $table->integer('id_tipoconsulta')->unsigned();
+            $table->string('cantidad',1)->default('1');
 
             $table->foreign('id_consultalab')->references('id')->on('consultaslab')->onDelete('cascade');
-            $table->foreign('id_consultamonto')->references('id')->on('consultas_montos')->onDelete('cascade');
+            $table->foreign('id_tipoconsulta')->references('id')->on('tipo_consulta')->onDelete('cascade');
             $table->timestamps();
         });
     }

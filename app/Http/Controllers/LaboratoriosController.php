@@ -124,8 +124,16 @@ class LaboratoriosController extends Controller
      * @param  \App\Laboratorios  $laboratorios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Laboratorios $laboratorios)
+    public function destroy(Request $request)
     {
-        //
+        //dd($request->all());
+        $consultalab=ConsultasLab::find($request->id);
+        if ($consultalab->delete()) {
+            flash("LA CONSULTA HA SIDO ELIMINADA CON EXITO!", 'success'); 
+        } else {
+            flash("DISCULPE, LA CONSULTA NO PUDO SER ELIMINADA!", 'error'); 
+        }
+        
+        return redirect()->back();        
     }
 }

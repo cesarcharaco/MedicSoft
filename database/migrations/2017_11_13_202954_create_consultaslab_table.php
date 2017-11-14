@@ -19,7 +19,6 @@ class CreateConsultaslabTable extends Migration
             $table->date('fecha');
             $table->enum('estado',['En Cola','Vista','Eliminada'])->default('En Cola');
             $table->string('posicion',2);
-            $table->string('cantidad',1)->default('1');
 
             $table->foreign('id_pacientent')->references('id')->on('pacientes_nt')->onDelete('cascade');
             
