@@ -38,9 +38,7 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 		]);
 	Route::get('/mostrarpacientes',[
 		'uses' => 'ConsultasController@mostrarpacientes',
-		'as' => 'admin.mostrarpacientes'
-		]);
-	
+		'as' => 'admin.mostrarpacientes']);
 	Route::resource('/laboratorios','LaboratoriosController');
 
 	Route::get('/consultas/{id}/verconsultas',[

@@ -34,14 +34,14 @@
 		<tr class="fila-base">
 			<td width="30">
 			<div class="form-group">
-			{!! Form::number('cantidad[]',null,['class' => 'form-control', 'style' => 'width:5em','placeholder' => '1','title' => 'Ingrese la cantidad a solicitar por el material', 'min' => '1', 'required' => 'required', 'maxlength' => '4','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
+			{!! Form::number('cantidad[]',1,['class' => 'form-control', 'style' => 'width:5em','placeholder' => '1','title' => 'Ingrese la cantidad a solicitar por el material', 'min' => '1', 'required' => 'required', 'maxlength' => '4','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
 			</div>
 			</td>
 			<td>
 			<div class="form-group">
-			<select name="id_material[]" style="width:100% important!" class="form-control select2" title="Seleccione El material a solicitar">
+			<select name="id_material[]" id="id_material"  style="width:100% important!" class="form-control material" title="Seleccione El material a solicitar">
 				@foreach($materiales2 as $key)
-					<option value="{{$key->d}}">{{$key->tipo_material}} - {{$key->descripcion}} - {{$key->modelo_marca}}</option>
+					<option value="{{$key->id}}">{{$key->tipo_material}} - {{$key->descripcion}} - {{$key->modelo_marca}}</option>
 				@endforeach
 			</select>
 			</div>
@@ -54,7 +54,7 @@
 			<td>
 			<select name="id_material[]" style="width:100% important!" class="form-control select2" title="Seleccione el material a solicitar">
 				@foreach($materiales as $key)
-					<option value="{{$key->d}}">{{$key->tipo_material}} - {{$key->descripcion}} - {{$key->modelo_marca}}</option>
+					<option value="{{$key->id}}">{{$key->tipo_material}} - {{$key->descripcion}} - {{$key->modelo_marca}}</option>
 				@endforeach
 			</select>
 			</td>

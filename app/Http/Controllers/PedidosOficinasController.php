@@ -41,9 +41,31 @@ class PedidosOficinasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PedidosOficinasRequest $request)
     {
-        //
+        //dd($request->all());
+
+        $fecha_cod=date('dmy');
+        $fecha=date('Y-m-d');
+        $buscar=PedidosOficinas::where('fecha',$fecha)->get();
+        $codigo=$fecha_cod."".count($buscar)+1;
+        //dd($codigo);
+        $pedido=PedidosOficinas::create(['id_oficina' => $request->id_oficina,
+                                'solicitante' => $request->empleado,
+                                'nacionalidad' => $request->nacionalidad,
+                                'cedula' => $request->cedula,
+                                'fecha' => $fecha,
+                                'codigo' => $codigo]);
+
+        for ($i=1; $i <count($request->cantidad) ; $i++) { 
+            $materiales=\DB::table('materiales_pedidos')->insert([
+                'id_pedido' => $pedido->id,
+                'id_material' => $request->id_material[$i],
+                'cantidad' => $request->cantidad[$i]]);
+        }
+         flash("PEDIDO REALIZADO CON ÉXITO", 'success'); 
+
+        return redirect()->route('pedidos_oficinas.index');
     }
 
     /**

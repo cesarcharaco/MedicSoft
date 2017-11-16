@@ -33,7 +33,7 @@
                     <td>{{$consulta->consultasmontos->tipoconsultas->especialidades->especialidad}}</td>
                     <td>{{$consulta->consultasmontos->tipoconsultas->consulta}}</td>
                     <td> {{$consulta->estado}} </td> 
-                    <td> {{$consulta->diagnostico}} </td>
+                    <td> <?php echo $consulta->diagnostico; ?> </td>
                     <td> {{$consulta->consultasmontos->monto}} </td>
                 </tr>
                 <?php $total+=$consulta->consultasmontos->monto; ?>

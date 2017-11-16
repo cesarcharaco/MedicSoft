@@ -25,7 +25,7 @@ class PedidosOficinasRequest extends FormRequest
     {
         return [
             'id_oficina' => 'required',
-            'solicitante' => 'required',
+            'empleado' => 'required',
             'nacionalidad' => 'required',
             'cedula' => 'required|digits_between:6,8|numeric'
         ];
@@ -35,8 +35,8 @@ class PedidosOficinasRequest extends FormRequest
     {
         return [
             'id_oficina.required' => 'Debe seleccionar una Oficina',
-            'solicitante.required' => 'El nombre del Solicitante es Obligatorio',
-            'nacionalidad.required' => 'Debe seleccionar la nacionalidad del solicitante',
+            'empleado.required' => 'El nombre del empleado es Obligatorio',
+            'nacionalidad.required' => 'Debe seleccionar la nacionalidad del empleado',
             'cedula.required' => 'La Cédula es Obligatoria',
             'cedula.digits_between' => 'La Cédula debe contener de 6 a 8 dígitos',
             'cedula.numeric' => 'La Cédula debe contener sólo números'

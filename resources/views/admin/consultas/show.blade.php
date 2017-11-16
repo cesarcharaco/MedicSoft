@@ -38,7 +38,7 @@
                     <td>{{$consulta->consultasmontos->tipoconsultas->consulta}}</td>
                     <td> {{$consulta->consultasmontos->monto}} </td>
                     <td> {{ $consulta->fecha }} </td>
-                    <td> {{ $consulta->diagnostico }} </td>
+                    <td> <?php echo  $consulta->diagnostico; ?> </td>
                     <td></td>
                 </tr>
                 @endif
