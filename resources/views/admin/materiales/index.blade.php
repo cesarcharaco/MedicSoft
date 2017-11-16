@@ -27,6 +27,9 @@
                   <th>Descripción</th>
                   <th>Modelo/Marca</th>
                   <th>Serial</th>
+                  <th>Disponible</th>
+                  <th>Stock Min</th>
+                  <th>Stock Max</th>
                   <th>Opciones</th>
                 </tr>
                 </thead>
@@ -38,6 +41,9 @@
                     <td>{{$material->descripcion}}</td>
                     <td>{{$material->modelo_marca}}</td>
                     <td>{{$material->serial}}</td>
+                    <td>{{$material->disponible}}</td>
+                    <td>{{$material->stock_min}}</td>
+                    <td>{{$material->stock_max}}</td>
                     <td>
                         <div class="btn-group">
                           <a href="{{ route('materiales.edit', [$material->id]) }}">
@@ -63,6 +69,9 @@
                   <th>Descripción</th>
                   <th>Modelo/Marca</th>
                   <th>Serial</th>
+                  <th>Disponible</th>
+                  <th>Stock Min</th>
+                  <th>Stock Max</th>
                   <th>Opciones</th>
                 </tr>
                 </tfoot>

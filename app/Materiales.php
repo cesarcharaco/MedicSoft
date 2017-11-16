@@ -8,7 +8,7 @@ class Materiales extends Model
 {
     protected $table='materiales';
 
-    protected $fillable=['tipo_material','descripcion','modelo_marca','serial'];
+    protected $fillable=['tipo_material','descripcion','modelo_marca','serial','stock_min','stock_max','disponible'];
 
     public function pedidos_oficinas()
     {

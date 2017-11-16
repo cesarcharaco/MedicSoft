@@ -41,7 +41,9 @@
 			<div class="form-group">
 			<select name="id_material[]" id="id_material"  style="width:100% important!" class="form-control material" title="Seleccione El material a solicitar">
 				@foreach($materiales2 as $key)
-					<option value="{{$key->id}}">{{$key->tipo_material}} - {{$key->descripcion}} - {{$key->modelo_marca}}</option>
+					@if($key->disponible!=0 AND $key->disponible>=$key->stock_min)
+					<option value="{{$key->id}}">{{$key->tipo_material}} - {{$key->descripcion}} - {{$key->modelo_marca}} - Disponible: {{$key->disponible-$key->stock_min}} - Stock Mínimo: {{$key->stock_min}}</option>
+					@endif
 				@endforeach
 			</select>
 			</div>
@@ -54,7 +56,9 @@
 			<td>
 			<select name="id_material[]" style="width:100% important!" class="form-control select2" title="Seleccione el material a solicitar">
 				@foreach($materiales as $key)
-					<option value="{{$key->id}}">{{$key->tipo_material}} - {{$key->descripcion}} - {{$key->modelo_marca}}</option>
+				@if($key->disponible!=0 AND $key->disponible>=$key->stock_min)
+					<option value="{{$key->id}}">{{$key->tipo_material}} - {{$key->descripcion}} - {{$key->modelo_marca}} - Disponible: {{$key->disponible-$key->stock_min}} @if(Auth::user()->tipo_user=="Administrador") - Stock Mínimo: {{$key->stock_min}} @endif</option>
+				@endif
 				@endforeach
 			</select>
 			</td>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Oficinas;
 use Illuminate\Http\Request;
-
+use App\PedidosOficinas;
 use App\Http\Requests\OficinasRequest;
 
 class OficinasController extends Controller
@@ -107,9 +107,14 @@ class OficinasController extends Controller
      */
     public function destroy(Request $request)
     {
-        //buscar la relacion en el inventario
+        
         $oficina=Oficinas::find($request->id);
-
+        $buscar=PedidosOficinas::where('id_oficina',$request->id)->get();
+        if (count($buscar)>0) {
+            flash("DISCULPE, LA OFICINA NO PUDO SER ELIMINADA DEBIDO A QUE SE ENCUENTRA RELACIONADA CON UNO O VARIOS PEDIDOS DE MATERIALES!", 'error'); 
+                    return redirect()->route('oficinas.index');
+        } else {
+                    
         if ($oficina->delete()) {
             flash("LA OFICINA HA SIDO ELIMINADA DE FORMA EXITOSA!", 'success'); 
                     return redirect()->route('oficinas.index');
@@ -118,5 +123,6 @@ class OficinasController extends Controller
                     return redirect()->route('oficinas.index');
         }
         
+        }
     }
 }

@@ -19,6 +19,9 @@ class CreateMaterialesTable extends Migration
             $table->text('descripcion');
             $table->string('modelo_marca',255);
             $table->string('serial',255);
+            $table->string('stock_min',255);
+            $table->string('stock_max',255);
+            $table->string('disponible',255)->default('0');
             $table->timestamps();
         });
     }

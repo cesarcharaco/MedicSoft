@@ -57,13 +57,21 @@ class MaterialesController extends Controller
                 $serial=$request->serial;
             }
             
-            
+            if ($request->stock_min>$stock_max) {
+                flash("DISCULPE, EL STOCK MÍNIMO NO PUEDE SER MAYOR AL STOCK MÁXIMO!", 'error'); 
+            return redirect()->route('materiales.create')->withInput();
+            } else {
+                            
             $material=Materiales::create(['tipo_material' => $request->tipo_material,
                                          'descripcion' => $descripcion,
                                          'modelo_marca' => $request->modelo_marca,
-                                         'serial' => $serial]);
+                                         'serial' => $serial,
+                                         'stock_min' => $request->stock_min,
+                                         'stock_max' => $request->stock_max]);
             flash("MATERIAL REGISTRADO CON ÉXITO!", 'success'); 
             return redirect()->route('materiales.index');
+
+            }
         }
                     
     }
@@ -118,15 +126,22 @@ class MaterialesController extends Controller
             } else {
                 $serial=$request->serial;
             }
+            if ($request->stock_min>$stock_max) {
+                flash("DISCULPE, EL STOCK MÍNIMO NO PUEDE SER MAYOR AL STOCK MÁXIMO!", 'error'); 
+            return redirect()->route('materiales.edit')->withInput();
+            } else {
             $material=Materiales::find($id);
             $material->tipo_material=$request->tipo_material;
             $material->descripcion=$descripcion;
             $material->modelo_marca=$request->modelo_marca;
             $material->serial=$serial;
+            $material->stock_min=$request->stock_min;
+            $material->stock_max=$request->stock_max;
             $material->save();
 
             flash("MATERIAL ACTUALIZADO CON ÉXITO!", 'success'); 
             return redirect()->route('materiales.index');
+            }
         }
         
     }

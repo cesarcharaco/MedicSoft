@@ -15,25 +15,37 @@ class MaterialesTableSeeder extends Seeder
             'tipo_material' => 'VAGI COVER',
             'descripcion' => '?',
             'modelo_marca' => 'ZMS',
-            'serial' => '?'
+            'serial' => '?',
+            'stock_min' => 10,
+            'stock_max' => 100,
+            'disponible' => 50
         ]);
         DB::table('materiales')->insert([
             'tipo_material' => 'TUBOS',
             'descripcion' => 'TAPA ROJA',
             'modelo_marca' => 'VD X 100 (6ML)',
-            'serial' => '?'
+            'serial' => '?',
+            'stock_min' => 10,
+            'stock_max' => 100,
+            'disponible' => 50
         ]);
         DB::table('materiales')->insert([
             'tipo_material' => 'SOLUCION',
             'descripcion' => ' 500 ML',
             'modelo_marca' => 'RINGER LACTATO',
-            'serial' => '?'
+            'serial' => '?',
+            'stock_min' => 10,
+            'stock_max' => 100,
+            'disponible' => 50
         ]);
         DB::table('materiales')->insert([
             'tipo_material' => 'SOLUCION',
             'descripcion' => '0,9',
             'modelo_marca' => 'CLORURO DE SODIO',
-            'serial' => '?'
+            'serial' => '?',
+            'stock_min' => 10,
+            'stock_max' => 100,
+            'disponible' => 50
         ]);
     }
 }

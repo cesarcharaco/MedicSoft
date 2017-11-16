@@ -50,22 +50,43 @@ class PedidosOficinasController extends Controller
         $buscar=PedidosOficinas::where('fecha',$fecha)->get();
         $codigo=$fecha_cod."".count($buscar)+1;
         //dd($codigo);
-        $pedido=PedidosOficinas::create(['id_oficina' => $request->id_oficina,
-                                'solicitante' => $request->empleado,
-                                'nacionalidad' => $request->nacionalidad,
-                                'cedula' => $request->cedula,
-                                'fecha' => $fecha,
-                                'codigo' => $codigo]);
-
+        //verificando que la cantidad solicitada no sea mayor a la disponible
+        $cont=0;
         for ($i=1; $i <count($request->cantidad) ; $i++) { 
-            $materiales=\DB::table('materiales_pedidos')->insert([
-                'id_pedido' => $pedido->id,
-                'id_material' => $request->id_material[$i],
-                'cantidad' => $request->cantidad[$i]]);
+            $material=Materiales::find($request->id_material[$i]);
+            $disponible=$material->disponible-$material->stock_min;
+            if ($request->cantidad[$i]>$disponible) {
+                $cont++;
+            }
         }
-         flash("PEDIDO REALIZADO CON ÉXITO", 'success'); 
+        if ($cont>0) {
+            flash("DISCULPE, HA AGREGADO UNA CANTIDAD PARA UN MATERIAL QUE SUPERA LO DISPONIBLE", 'error'); 
 
-        return redirect()->route('pedidos_oficinas.index');
+        return redirect()->back()->withInput();   
+        } else {
+            //descontando del material lo solicitado
+            for ($i=1; $i <count($request->cantidad) ; $i++) { 
+                $material=Materiales::find($request->id_material[$i]);
+                $material->disponible=$material->disponible-$request->cantidad[$i];
+                $material->save();
+            }
+            $pedido=PedidosOficinas::create(['id_oficina' => $request->id_oficina,
+                                    'solicitante' => $request->empleado,
+                                    'nacionalidad' => $request->nacionalidad,
+                                    'cedula' => $request->cedula,
+                                    'fecha' => $fecha,
+                                    'codigo' => $codigo]);
+
+            for ($i=1; $i <count($request->cantidad) ; $i++) { 
+                $materiales=\DB::table('materiales_pedidos')->insert([
+                    'id_pedido' => $pedido->id,
+                    'id_material' => $request->id_material[$i],
+                    'cantidad' => $request->cantidad[$i]]);
+            }
+             flash("PEDIDO REALIZADO CON ÉXITO", 'success'); 
+
+            return redirect()->route('pedidos_oficinas.index');
+        }
     }
 
     /**

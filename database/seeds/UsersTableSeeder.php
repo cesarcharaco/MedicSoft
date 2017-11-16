@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Anibal',
             'email' => 'anibal@gmail.com',
             'password' => bcrypt('1234'),
-            'tipo_user' => 'Administrador'
+            'tipo_user' => 'Recepcionista'
         ]);
             
     
