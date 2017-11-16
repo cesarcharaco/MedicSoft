@@ -11,12 +11,13 @@
             <div class="box">
             <div class="box-header">
               <h3 class="box-title">Horarios</h3>
+              @if(Auth::user()->tipo_user=="Administrador")
               <div class="btn-group pull-right" style="margin: 30px 10px 15px 15px;">
             <a href="{{ url('admin/horarios/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                 <i class="fa fa-pencil"></i> Asignar Horario
             </a>
               </div>
-
+              @endif
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">

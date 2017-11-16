@@ -47,6 +47,7 @@
                     <td>{{$paciente_nt->genero}} </td>
                     <td>{{$paciente_nt->pacientes->nacionalidad}}-{{$paciente_nt->pacientes->cedula}} {{$paciente_nt->pacientes->apellidos}}, {{$paciente_nt->pacientes->nombres}}</td>  
                     <td>
+                      @if(Auth::user()->tipo_user=="Administrador")
                         <div class="btn-group">
                           <a href="{{ route('pacientes_nt.edit', [$paciente_nt->id]) }}">
                             <button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro">
@@ -60,6 +61,7 @@
                           </a>
                         <br><br>
                         </div>
+                        @endif
                       </td>
                 </tr>
                 @endforeach

@@ -28,6 +28,7 @@
                     <td>{{$horario->especialidades->especialidad}}</td> 
                     <td>
                         <div class="btn-group">
+                          @if(Auth::user()->tipo_user=="Administrador")
                           <a href="{{ route('horarios.edit', [$horario->id_especialidad]) }}">
                             <button class="btn btn-default btn-flat" title="Presionando este botón puede editar el horario">
                               <i class="fa fa-pencil"></i>
@@ -38,6 +39,7 @@
                               <i class="fa fa-trash"></i>
                             </button>
                           </a>
+                          @endif
                            <a href="{{ route('admin.horarios.show2', [$horario->id_especialidad]) }}">
                             <button class="btn btn-default btn-flat" title="Presionando este botón puede ver el horario">
                               <i class="fa fa-eye"></i>
