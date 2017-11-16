@@ -14,4 +14,9 @@ class MaterialesRecibidos extends Model
     {
     	return $this->belongsTo('App\RecepcionMateriales','id_materialesrec');
     }
+
+    public function materiales()
+    {
+    	return $this->belongsTo('App\Materiales','id_material');
+    }
 }

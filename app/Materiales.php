@@ -19,4 +19,9 @@ class Materiales extends Model
     {
     	return $this->hasMany('App\MaterialesSolicitados','id_material','id');
     }
+
+    public function materialesrecibidos()
+    {
+        return $this->hasMany('App\MaterialesRecibidos','id_material','id');
+    }
 }

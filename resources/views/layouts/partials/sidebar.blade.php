@@ -16,13 +16,13 @@
             <li class="header">MENU DE NAVEGACIÓN</li>
             <li class="active treeview">
                 <a href="#">
-                    <i class="fa fa-user"></i> <span>Pacientes</span>
+                    <i class="fa fa-user"></i> <span>Pacientessasa</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ URL('admin/pacientes')}}"><i class="fa fa-circle-o"></i>Titulares</a></li>
+                    <li class="active"><a href="{{ URL('admin/pacientesasasa')}}"><i class="fa fa-circle-o"></i>Titulares</a></li>
                     <li><a href="{{ URL('admin/pacientes/create')}}"><i class="fa fa-circle-o"></i>Nuevo Titular</a></li>
                     <li><a href="{{ URL('admin/pacientes_nt')}}"><i class="fa fa-circle-o"></i>Beneficiarios</a></li>
                 </ul>
@@ -75,7 +75,7 @@
                     @endif
                 </ul>
             </li>
-            @if(Auth::user()->tipo_user=="Administrador")
+            @if(Auth::user()->tipo_user=="Administrador" || Auth::user()->tipo_user=="Almacenista")
             <li class="active treeview">
                 <a href="#">
                     <i class="fa fa-medkit"></i> <span>Inventario</span>
@@ -94,6 +94,7 @@
 
                 </ul>
             </li>
+            @if(Auth::user()->tipo_user=="Administrador")
             <li class="active treeview">
                 <a href="#">
                     <i class="fa fa-gears"></i> <span>Configuracion</span>
@@ -106,9 +107,10 @@
                     <li class="active"><a href="{{ URL('admin/tipoconsultas')}}"><i class="fa fa-circle-o text-aqua"></i></i>Tipo de Consultas</a></li>
                     <li class="active"><a href="{{ URL('admin/consultasmontos')}}"><i class="fa fa-circle-o text-red"></i></i>Montos de Consultas</a></li>
                     <li class="active"><a href="{{ URL('admin/oficinas')}}"><i class="fa fa-circle-o text-aqua"></i></i>Oficinas</a></li>
-                    <li class="active"><a href="{{ URL('admin/laboratorios')}}"><i class="fa fa-circle-o text-aqua"></i></i>Laboratorios</a></li>
+                    <li class="active"><a href="{{ URL('admin/laboratorios')}}"><i class="fa fa-circle-o text-aqua"></i></i>Laboratoriosxzx</a></li>
                 </ul>
             </li>
+            @endif
             @endif
             <!-- <li class="header">CONFIGURACIÓN</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Importante</span></a></li>

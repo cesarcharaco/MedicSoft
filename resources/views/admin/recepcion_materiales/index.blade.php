@@ -85,7 +85,8 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Eliminar La Recepción de Materiales</h4>
             <div class="modal-body">
-                ¿Esta seguro que desea eliminar esta recepción en específico?...
+                ¿Esta seguro que desea eliminar esta recepción en específico?...<BR>
+                recuerde que si elimina este registro no existirá constancia de que hubo dicha recepción
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>

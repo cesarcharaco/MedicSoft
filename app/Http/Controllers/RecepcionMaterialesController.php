@@ -48,6 +48,7 @@ class RecepcionMaterialesController extends Controller
      */
     public function store(Request $request)
     {
+
         //dd($request->all());
         $cont=0;
         for ($i=0; $i < count($request->cantidad); $i++) { 
@@ -98,7 +99,13 @@ class RecepcionMaterialesController extends Controller
      */
     public function edit($id)
     {
-        
+        $recibido=RecepcionMateriales::find($id);
+
+        $materiales=MaterialesRecibidos::where('id_materialesrec',$id)->get();
+
+        $materiales2=MaterialesSolicitados::where('fecha',$recibido->fecha_solicitud)->get();
+
+        return view('admin.recepcion_materiales.edit', compact('recibido','materiales','materiales2'));
     }
 
     /**
@@ -108,19 +115,72 @@ class RecepcionMaterialesController extends Controller
      * @param  \App\RecepcionMateriales  $recepcionMateriales
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RecepcionMateriales $recepcionMateriales)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        //dd($request->all());
+        $cont=0;
+        for ($i=0; $i < count($request->cantidad); $i++) { 
+            if($request->cantidad>$request->stock_max){
+                $cont++;
+            }
+        }
+        
 
+        if ($cont>0) {
+        flash("DISCULPE, SE HA REGISTRADO UNA CANTIDAD DE ALGÚN MATERIAL POR ENCIMA DEL STOCK MÁXIMO DEL MATERIAL, VERIFIQUE LA INFORMACIÓN SUMINISTRADA!", 'error'); 
+                return redirect()->back()->withInput();
+        } else {
+            //restandole la cantidad sumada anterirormente
+            for ($i=0; $i <count($request->id_material) ; $i++) { 
+                $recibido=MaterialesRecibidos::where('id_materialesrec',$id)->where('id_material',$request->id_material[$id])->first();
+
+                $material=Materiales::find($request->id_material[$i]);
+                $material->disponible=$material->disponible-$recibido->cantidad;
+                $material->save();
+            }
+            //--------------------
+            for ($i=0; $i <count($request->id_material) ; $i++) { 
+                $material=Materiales::find($request->id_material[$i]);
+                $material->disponible=$material->disponible+$request->cantidad[$i];
+                $material->save();
+            }
+            $fecha=date('Y-m-d');
+            $recibidos=RecepcionMateriales::create(['fecha_solicitud' => $request->fecha,
+                'fecha_entrega' => $fecha,
+                'responsable' => $request->responsable]);
+            for ($i=0; $i < count($request->id_material) ; $i++) { 
+                $materiales=MaterialesRecibidos::create(['id_materialesrec' => $recibidos->id,
+                    'id_material' => $request->id_material[$i],
+                    'cantidad' => $request->cantidad[$i]]);
+            }
+        flash('ACTUALIZACIÓN EXITOSA DE LA DISPONIBILIDAD DE LOS MATERIALES RECIBIDOS');
+            return redirect()->route('materiales.index');
+        }
+    }
+    public function vermateriales($id)
+    {
+        $num=0;
+        //dd($id);
+
+        $solicitud=RecepcionMateriales::find($id);
+        $materiales=MaterialesRecibidos::where('id_materialesrec',$id)->get();
+        //dd($materiales);
+
+        return view('admin.recepcion_materiales.vermateriales', compact('num','solicitud','materiales'));
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\RecepcionMateriales  $recepcionMateriales
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RecepcionMateriales $recepcionMateriales)
+    public function destroy(Request $request)
     {
-        //
+        $recibido=RecepcionMateriales::find($request->id);
+
+        $recibido->delete();
+
+        flash('ELIMNACIÓN DE REGGISTRO DE MATERIALES RECIBIDO CON ÉXITO');
+            return redirect()->route('recepcion_materiales.index');
     }
 }

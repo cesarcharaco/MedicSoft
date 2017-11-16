@@ -3,11 +3,11 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Realizar Recibido
+        Realizar Recepción de Material
         <small>Nuevo Ingreso</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Registrar Pedido</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Registrar Recepción</a></li>
         <li class="active">Nuevo</li>
     </ol>
 </section>

@@ -47,6 +47,7 @@ class PedidosOficinasController extends Controller
 
         $fecha_cod=date('dmy');
         $fecha=date('Y-m-d');
+        
         $buscar=PedidosOficinas::where('fecha',$fecha)->get();
         $codigo=$fecha_cod."".count($buscar)+1;
         //dd($codigo);

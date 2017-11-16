@@ -48,8 +48,30 @@ class MaterialesSolicitadosController extends Controller
     {
         
         $fecha=date('Y-m-d');
+        //verificando de que no agregó mas de una vez el material
+        $cont2=0;
+        for ($i=1; $i <count($request->cantidad) ; $i++) {
+            $cont=0;
+            $id_material=$request->id_material[$i]; 
+            for ($j=1; $j < count($request->cantidad); $j++) { 
+                if($request->id_material[$j]==$id_material){
+                    $cont++;
+                }
+            }
+            //echo $cont."-";
+            if($cont>1){
+                $cont2++;
+            }
+        }
+        //dd($cont2);
+        if ($cont2>0) {
+            flash("DISCULPE, HA SELECCIONADO UN MISMO MATERIAL MÁS DE UNA VEZ", 'error'); 
+            return redirect()->back()->withInput();
+        } else {
+            
+        
         $solicitudes=MaterialesSolicitados::where('fecha',$fecha)->get();
-
+     
         if (count($solicitudes)>0) {
             flash("DISCULPE, NO PUEDE REALIZAR MAS DE UNA SOLICITUD POR DÍA", 'error'); 
 
@@ -81,6 +103,7 @@ class MaterialesSolicitadosController extends Controller
         
         }
         
+        }
         
     }
 
@@ -132,6 +155,27 @@ class MaterialesSolicitadosController extends Controller
     public function update(Request $request,$id)
     {
         //dd($request->all());
+        //verificando de que no agregó mas de una vez el material
+        $cont2=0;
+        for ($i=1; $i <count($request->cantidad) ; $i++) {
+            $cont=0;
+            $id_material=$request->id_material[$i]; 
+            for ($j=1; $j < count($request->cantidad); $j++) { 
+                if($request->id_material[$j]==$id_material){
+                    $cont++;
+                }
+            }
+            //echo $cont."-";
+            if($cont>1){
+                $cont2++;
+            }
+        }
+        //dd($cont2);
+        if ($cont2>0) {
+            flash("DISCULPE, HA SELECCIONADO UN MISMO MATERIAL MÁS DE UNA VEZ", 'error'); 
+            return redirect()->back()->withInput();
+        } else {
+            
         
         $solicitudes=MaterialesSolicitados::where('fecha',$request->fecha)->get();
 
@@ -162,7 +206,7 @@ class MaterialesSolicitadosController extends Controller
             return redirect()->route('solicitud_materiales.index');
         }
         
-        
+        }
     }
 
     public function buscarsolicitudes($fecha)
