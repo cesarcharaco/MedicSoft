@@ -14,6 +14,8 @@ use Excel;
 use App\ConsultasLab;
 use App\ConsultasLaboratorios;
 use App\Laboratorios;
+use App\Horarios;
+use App\Turnos;
 class ConsultasController extends Controller
 {
     /**
@@ -37,14 +39,48 @@ class ConsultasController extends Controller
      */
     public function create()
     {
+        $dia=date('D');
+        //dd($dia);
+        if($dia!='Sun' and $dia!='Sat'){
+
+            $hora=date('H');
+            //dd($hora);
+        if ($hora>=12) {
+            $momento="Tarde";
+        } else {
+            $momento="Mañana";
+        }
+        switch ($dia) {
+            case 'Mon':
+                $id_dia=1;
+                break;
+            case 'Tue':
+                $id_dia=2;
+                break;
+            case 'Wed':
+                $id_dia=3;
+                break;
+            case 'Thu':
+                $id_dia=4;
+                break;
+            case 'Fri':
+                $id_dia=5;
+                break;
+        }
+        
         $pacientesnt=Pacientes_nt::all();
-        $tipoconsultas=Tipo_consulta::all();
+        $consultas=Tipo_consulta::all();
         $laboratorios=Laboratorios::where('disponibilidad','Si')->get();
-        //dd($laboratorios);
-        // foreach ($laboratorios as $key) {
-        //     echo "id ".$key->id_tipoconsulta." disponibilidad: ".$key->disponibilidad."<br>";
-        // }
+        
+            $turno=Turnos::where('id_dia',$id_dia)->where('momento',$momento)->first();
+            $tipoconsultas=Horarios::where('id_turno',$turno->id)->get();
+        
+        //dd('aqui');
         return view('admin.consultas.create', compact('pacientesnt','tipoconsultas','laboratorios'));
+        }else{
+            flash("DISCULPE, NO SE PUEDE REGISTRAR LA CONSULTA EN LOS DÍAS SÁBADO O DOMINGO!", 'error'); 
+            return redirect()->route('consultas.index');
+        }
     }
 
     /**
@@ -284,12 +320,47 @@ class ConsultasController extends Controller
     
     public function edit($id)
     {
-        $consulta=Consultas::find($id);
-        //dd($consulta);
-        $pacientent=Pacientes_nt::find($consulta->id_pacientent);
-        $tipoconsultas=Tipo_consulta::all();
+        $dia=date('D');
+        //dd($dia);
+        if($dia!='Sun' and $dia!='Sat'){
+
+            $hora=date('H');
+            //dd($hora);
+        if ($hora>=12) {
+            $momento="Tarde";
+        } else {
+            $momento="Mañana";
+        }
+        switch ($dia) {
+            case 'Mon':
+                $id_dia=1;
+                break;
+            case 'Tue':
+                $id_dia=2;
+                break;
+            case 'Wed':
+                $id_dia=3;
+                break;
+            case 'Thu':
+                $id_dia=4;
+                break;
+            case 'Fri':
+                $id_dia=5;
+                break;
+        }
+        
+        $pacientesnt=Pacientes_nt::all();
+        $consultas=Tipo_consulta::all();
+        $laboratorios=Laboratorios::where('disponibilidad','Si')->get();
+        
+            $turno=Turnos::where('id_dia',$id_dia)->where('momento',$momento)->first();
+            $tipoconsultas=Horarios::where('id_turno',$turno->id)->get();
 
         return view('admin.consultas.edit', compact('consulta','tipoconsultas','pacientent'));
+        }else{
+            flash("DISCULPE, NO SE PUEDE EDITAR LA CONSULTA EN LOS DÍAS SÁBADO O DOMINGO!", 'error'); 
+            return redirect()->route('consultas.index');
+        }
     }
 
     /**

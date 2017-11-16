@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\MaterialesSolicitados;
 use Illuminate\Http\Request;
 use App\Materiales;
+use App\RecepcionMateriales;
 class MaterialesSolicitadosController extends Controller
 {
     /**
@@ -19,9 +20,9 @@ class MaterialesSolicitadosController extends Controller
         $mat=MaterialesSolicitados::get()->last();
         //dd($mat->id);
         $materiales=MaterialesSolicitados::select('id')->select('fecha')->groupBy('fecha')->get();
-       
+        $recibidos=RecepcionMateriales::all();
         //dd($materiales);
-        return view('admin.solicitud_materiales.index', compact('num','materiales'));
+        return view('admin.solicitud_materiales.index', compact('num','materiales','recibidos'));
     }
 
     /**

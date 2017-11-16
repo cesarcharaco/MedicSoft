@@ -91,5 +91,10 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 		'uses' => 'RecepcionMaterialesController@recibir',
 		'as' => 'admin.recepcion_materiales.recibir'
 		]);
+	
+	Route::get('/recepcion_materiales/{id}/vermateriales',[
+		'uses' => 'RecepcionMaterialesController@vermateriales',
+		'as' => 'admin.recepcion_materiales.vermateriales'
+		]);
 });
 

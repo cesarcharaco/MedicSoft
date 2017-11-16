@@ -29,12 +29,7 @@ class RecepcionMaterialesController extends Controller
      */
     public function create()
     {
-        $materiales=MaterialesSolicitados::select('id')->select('fecha')->groupBy('fecha')->get();
-        $materiales2=MaterialesSolicitados::select('id')->select('fecha')->groupBy('fecha')->get();
-
-       return View('admin.recepcion_materiales.create',compact('materiales','materiales2'));
-
-
+        
     }
 
     public function recibir($fecha)
@@ -53,7 +48,35 @@ class RecepcionMaterialesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $cont=0;
+        for ($i=0; $i < count($request->cantidad); $i++) { 
+            if($request->cantidad>$request->stock_max){
+                $cont++;
+            }
+        }
+        if ($cont>0) {
+        flash("DISCULPE, SE HA REGISTRADO UNA CANTIDAD DE ALGÚN MATERIAL POR ENCIMA DEL STOCK MÁXIMO DEL MATERIAL, VERIFIQUE LA INFORMACIÓN SUMINISTRADA!", 'error'); 
+                return redirect()->back()->withInput();
+        } else {
+            for ($i=0; $i <count($request->id_material) ; $i++) { 
+                $material=Materiales::find($request->id_material[$i]);
+                $material->disponible=$material->disponible+$request->cantidad[$i];
+                $material->save();
+            }
+            $fecha=date('Y-m-d');
+            $recibidos=RecepcionMateriales::create(['fecha_solicitud' => $request->fecha,
+                'fecha_entrega' => $fecha,
+                'responsable' => $request->responsable]);
+            for ($i=0; $i < count($request->id_material) ; $i++) { 
+                $materiales=MaterialesRecibidos::create(['id_materialesrec' => $recibidos->id,
+                    'id_material' => $request->id_material[$i],
+                    'cantidad' => $request->cantidad[$i]]);
+            }
+        flash('ACTUALIZACIÓN EXITOSA DE LA DISPONIBILIDAD DE LOS MATERIALES RECIBIDOS');
+            return redirect()->route('materiales.index');
+        }
+        
     }
 
     /**
@@ -73,9 +96,9 @@ class RecepcionMaterialesController extends Controller
      * @param  \App\RecepcionMateriales  $recepcionMateriales
      * @return \Illuminate\Http\Response
      */
-    public function edit(RecepcionMateriales $recepcionMateriales)
+    public function edit($id)
     {
-        //
+        
     }
 
     /**

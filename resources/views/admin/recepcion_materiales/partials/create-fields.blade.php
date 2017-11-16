@@ -23,6 +23,9 @@
 			</td>
 			<td>
 			<div class="form-group">
+			{!! Form::hidden('fecha',$key->fecha) !!}
+			{!! Form::hidden('id_material[]',$key->id_material) !!}
+			{!! Form::hidden('stock_max[]',$key->materiales->stock_max) !!}
 			<strong>{{ $key->materiales->tipo_material}} - 
 				Descripión: @if($key->materiales->descripcion!="") {{$key->materiales->descripcion}} @endif Cantidad Solicitada: {{$key->cantidad}}</strong>
 			</div>

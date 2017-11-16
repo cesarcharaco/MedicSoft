@@ -25,6 +25,7 @@ class CreatePacientesNtTable extends Migration
             $table->string('edad',2);
             $table->string('genero',1);
             $table->string('titular',2);
+            $table->enum('parentesco',['Madre','Padre','Esposo(a)','Hijo(a)','Titular'])->default('Titular');
             $table->integer('id_paciente')->unsigned();
             
             $table->foreign('id_paciente')->references('id')->on('pacientes')->onDelete('cascade');

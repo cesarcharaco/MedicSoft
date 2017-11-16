@@ -36,10 +36,19 @@
 	{!! Form::label('f','F') !!}
 	{!! Form::radio('genero','F',false,[ 'title' => 'Seleccione si es de género Femenino']) !!}
 </div>
+<div class="form-group">
+	{!! Form::label('parentesco','Parentesco') !!}
 
+	<select name="parentesco" id="parentesco" title="Seleccione el parentesco con el Titular" class="form-control">
+		<option value="Madre">Madre</option>
+		<option value="Padre">Padre</option>
+		<option value="Esposo(a)">Esposo(a)</option>
+		<option value="Hijo(a)">Hijo(a)</option>
+	</select>
+</div>
 <div class="form-group{{ $errors->has('edad') ? ' has-error' : '' }}">
 	{!! Form::label('edad','* Edad') !!}
-	{!! Form::number('edad',null,['class' => 'form-control','required' => 'required','placeholder' => '18','min' => '0', 'title' => 'Ingrese la Edad del Paciente','maxLength' => '2','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);', 'style'=>$errors->has('edad') ? 'border-color: red; border: 1px solid red;': '']) !!}
+	{!! Form::number('edad',null,['class' => 'form-control','required' => 'required','placeholder' => '18','id' => 'edad','min' => '0', 'title' => 'Ingrese la Edad del Paciente','maxLength' => '2','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);', 'style'=>$errors->has('edad') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>
 <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
 	{!! Form::label('telefono','* Teléfono') !!}

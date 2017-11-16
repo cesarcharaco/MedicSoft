@@ -229,6 +229,7 @@ class PedidosOficinasController extends Controller
                 foreach ($key2->materiales as $key3) {
                     
                     if($key3->pivot->id_material==$key->id){
+                        
                         $cont2+=$key3->pivot->cantidad;
                         if ($key->descripcion!="?") {
                             $materialesx[$i]=$key->tipo_material." ".$key->descripcion;
@@ -246,18 +247,21 @@ class PedidosOficinasController extends Controller
                             $serial[$i]="";
                         }
                         if ($cont2!=0) {
-                            $totales[$i]+=$cont2;
+                            $totales[$i]+=$key3->pivot->cantidad;
                         }
                         
                         
                     }
+
                     //echo $i."--";
                 }
+                //echo "*";
             $cont+=$cont2;
-            }
             if ($cont2!=0) {
                $i++;
             }
+            }
+            
             
         }
         $fin=count($totales)-1;
@@ -270,6 +274,12 @@ class PedidosOficinasController extends Controller
             $tabla[$x][2]=$modelo[$x];
             $tabla[$x][3]=$serial[$x];
         }
+       /* for ($p=0; $p < $fin; $p++) { 
+            for ($q=0; $q < 4; $q++) { 
+                echo $tabla[$p][$q]."-";
+            }
+            echo "<br>";
+        }*/
         $fecha=date('Y-m-d');
         $num=0;
     $dompdf = \PDF::loadView('admin.pdfs.reportes.reportepedidos', ['num' => $num,'tabla' => $tabla,'fin' => $fin,'fecha' => $fecha])->setPaper('a4', 'portrait');

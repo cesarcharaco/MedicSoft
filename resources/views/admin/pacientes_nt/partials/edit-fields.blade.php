@@ -45,6 +45,16 @@
 		{!! Form::radio('genero','F',false,[ 'title' => 'Seleccione si es de género Femenino']) !!}
 	@endif
 </div>
+<div class="form-group{{ $errors->has('parentesco') ? ' has-error' : '' }}">
+	{!! Form::label('parentesco','Parentesco') !!}
+
+	<select name="parentesco" id="parentesco" title="Seleccione el parentesco con el Titular" class="form-control">
+		<option value="Madre" @if($paciente_nt->parentesco=="Madre") selected="selected" @endif >Madre</option>
+		<option value="Padre" @if($paciente_nt->parentesco=="Padre") selected="selected" @endif >Padre</option>
+		<option value="Esposo(a)" @if($paciente_nt->parentesco=="Esposo(a)") selected="selected" @endif >Esposo(a)</option>
+		<option value="Hijo(a)" @if($paciente_nt->parentesco=="Hijo(a)") selected="selected" @endif >Hijo(a)</option>
+	</select>
+</div>
 <div class="form-group{{ $errors->has('edad') ? ' has-error' : '' }}">
 	{!! Form::label('edad','* Edad') !!}
 	{!! Form::number('edad',$paciente_nt->edad,['class' => 'form-control','required' => 'required','placeholder' => '18','min' => '0', 'title' => 'Ingrese la Edad del Paciente','maxLength' => '2','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);', 'style'=>$errors->has('edad') ? 'border-color: red; border: 1px solid red;': '']) !!}

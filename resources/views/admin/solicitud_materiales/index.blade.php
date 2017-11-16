@@ -53,11 +53,18 @@
                                 <button class="btn btn-danger btn-flat" title="Presionando este botón puede descargar el formato PDF de la Solicitud">
                                   <i class="fa fa-file-pdf-o"></i>
                                 </button></a>
+                                <?php $cont=0; ?>
+                            @foreach($recibidos as $key2)
+                                @if($key2->fecha_solicitud==$key->fecha)    
+                                  <?php $cont++; ?>
+                                @endif
+                            @endforeach
+                            @if($cont==0)
                             <a href="{{ route('admin.recepcion_materiales.recibir', [$key->fecha]) }}">
                                 <button class="btn btn-info btn-flat" title="Presionando este botón puede cargar los Materiales recibidos">
                                   <i class="fa fa-upload"></i>
                                 </button></a> 
-
+                            @endif
                             </div>
                     </td>
                 </tr>

@@ -38,3 +38,17 @@
 </div>
 
 @endsection
+@section('scripts')
+<script type="text/javascript">
+    
+    $("#parentesco").on('change',function(){
+        var valor = $(this).val();
+        if (valor=="Hijo(a)") {
+            $("#edad").attr('max','23');
+        } else {
+            $("#edad").attr('max','100');
+        }
+    })
+
+</script>
+@endsection

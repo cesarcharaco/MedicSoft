@@ -17,7 +17,7 @@ class CreateRecepcionMaterialesTable extends Migration
             $table->increments('id');
             $table->date('fecha_solicitud');
             $table->date('fecha_entrega');
-            $table->string('responsabe',255);
+            $table->string('responsable',255);
             
             $table->timestamps();
         });

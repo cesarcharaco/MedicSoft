@@ -22,6 +22,7 @@ class PacientesNtTableSeeder extends Seeder
             'edad' => '65',
             'genero' => 'F',
             'titular' => 'No',
+            'parentesco' => 'Madre',
             'id_paciente' => 1
         ]);
 
@@ -36,6 +37,7 @@ class PacientesNtTableSeeder extends Seeder
             'edad' => '54',
             'genero' => 'M',
             'titular' => 'No',
+            'parentesco' => 'Padre',
             'id_paciente' => 2
         ]);
 
@@ -50,6 +52,7 @@ class PacientesNtTableSeeder extends Seeder
             'edad' => '16',
             'genero' => 'F',
             'titular' => 'No',
+            'parentesco' => 'Hijo(a)',
             'id_paciente' => 3
         ]);
 
@@ -62,8 +65,9 @@ class PacientesNtTableSeeder extends Seeder
             'telefono' => '1048996',
             'direccion' => 'CAGUA',
             'edad' => '53',
-            'genero' => 'M',
+            'genero' => 'F',
             'titular' => 'No',
+            'parentesco' => 'Madre',
             'id_paciente' => 4
         ]);
 

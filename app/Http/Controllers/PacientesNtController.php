@@ -54,7 +54,19 @@ class PacientesNtController extends Controller
                 flash("DISCULPE, EL TITULAR SELECCIONADO YA TIENE 5 BENEFICIARIOS REGISTRADOS!", 'error'); 
                 return redirect()->route('pacientes_nt.create')->withInput();
             } else {
-                                    
+                if ($request->parentesco!=="Hijo(a)") {
+                    //verificando si tiene un padre, madre o esposo(a) ya registrado
+                    $buscando=Pacientes_nt::where('parentesco',$request->parentesco)->where('id_paciente',$request->id_paciente)->get();           
+                    $cuanto=count($buscando);
+                } else {
+                    $cuanto=0;
+                }
+                if ($cuanto>0) {
+                     flash("DISCULPE, YA EXISTE UN(A) ".$request->parentesco." REGISTRADO PARA EL TITULAR SELECCIONADO, VERIFIQUE LA BIEN LA INFORMACIÓN REGISTRADA!", 'error'); 
+                return redirect()->route('pacientes_nt.create')->withInput();
+                } else {
+                
+                
                 $paciente_nt=Pacientes_nt::create(['nombres' => $request->nombres,
                                          'apellidos' => $request->apellidos,
                                          'nacionalidad' => $request->nacionalidad,
@@ -65,9 +77,13 @@ class PacientesNtController extends Controller
                                          'edad' => $request->edad,
                                          'genero' => $request->genero,
                                          'titular' => 'No',
+                                         'parentesco' => $request->parentesco,
                                          'id_paciente' => $request->id_paciente]);
                 flash("EL REGISTRO HA SIDO EXITOSO!", 'success');     
                 return redirect()->route('pacientes_nt.index');       
+                }
+                
+                
             }
         }
 
@@ -115,7 +131,18 @@ class PacientesNtController extends Controller
             flash("LA CÉDULA YA HA SIDO REGISTRADA!", 'error'); 
             return redirect()->route('pacientes_nt.edit')->withInput();
         } else {
-           
+           if ($request->parentesco!=="Hijo(a)") {
+                    //verificando si tiene un padre, madre o esposo(a) ya registrado
+                    $buscando=Pacientes_nt::where('parentesco',$request->parentesco)->where('id_paciente',$request->id_paciente)->where('id','<>',$id)->get();           
+                    $cuanto=count($buscando);
+                } else {
+                    $cuanto=0;
+                }
+                if ($cuanto>0) {
+                     flash("DISCULPE, YA EXISTE UN(A) ".$request->parentesco." REGISTRADO PARA EL TITULAR SELECCIONADO, VERIFIQUE LA BIEN LA INFORMACIÓN REGISTRADA!", 'error'); 
+                return redirect()->route('pacientes_nt.create')->withInput();
+                } else {
+                
             $paciente_nt=Pacientes_nt::find($id);
             $paciente_nt->nombres=$request->nombres;
             $paciente_nt->apellidos=$request->apellidos;
@@ -127,10 +154,12 @@ class PacientesNtController extends Controller
             $paciente_nt->id_paciente=$request->id_paciente;
             $paciente_nt->edad=$request->edad;
             $paciente_nt->genero=$request->genero;
+            $paciente_nt->parentesco=$request->parentesco;
             $paciente_nt->save();
 
             flash("LA ACTUALIZACIÓN HA SIDO EXITOSA!", 'success'); 
             return redirect()->route('pacientes_nt.index');
+            }
         }
         
     }

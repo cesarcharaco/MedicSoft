@@ -30,6 +30,7 @@
                   <th>Dirección</th>
                   <th>Edad</th>
                   <th>Género</th>
+                  <th>Parentesco</th>
                   <th>Titular</th>
                   <th>Opciones</th>
                 </tr>
@@ -45,6 +46,7 @@
                     <td><?php echo $paciente_nt->direccion; ?> </td>
                     <td>{{$paciente_nt->edad}} </td>
                     <td>{{$paciente_nt->genero}} </td>
+                    <td>{{$paciente_nt->parentesco}}</td>
                     <td>{{$paciente_nt->pacientes->nacionalidad}}-{{$paciente_nt->pacientes->cedula}} {{$paciente_nt->pacientes->apellidos}}, {{$paciente_nt->pacientes->nombres}}</td>  
                     <td>
                       @if(Auth::user()->tipo_user=="Administrador")
@@ -76,6 +78,7 @@
                   <th>Dirección</th>
                   <th>Edad</th>
                   <th>Género</th>
+                  <th>Parentesco</th>
                   <th>Titular</th>
                   <th>Opciones</th>
                 </tr>

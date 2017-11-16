@@ -12,7 +12,7 @@
 	<option value="">NINGUNA</option>
 		@foreach($tipoconsultas as $tipo)
 			@if($tipo->especialidades->especialidad!="LABORATORIO")
-			<option value="{{$tipo->id}}"> {{$tipo->consulta}} - Especialidad: {{$tipo->especialidades->especialidad}} </option>
+			<option value="{{$tipo->id_especialidad}}"> {{$tipo->especialidades->tipoconsultas[0]->consulta}} - Especialidad: {{$tipo->especialidades->especialidad}}</option>
 			@endif
 		@endforeach
 	</select>
