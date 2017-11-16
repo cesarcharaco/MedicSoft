@@ -14,4 +14,9 @@ class Materiales extends Model
     {
     	return $this->belongsToMany('App\PedidosOficinas','materiales_pedidos','id_material','id_pedido')->withPivot('cantidad')->withTimestamps();
     }
+
+    public function materialessolicitados()
+    {
+    	return $this->hasMany('App\MaterialesSolicitados','id_material','id');
+    }
 }

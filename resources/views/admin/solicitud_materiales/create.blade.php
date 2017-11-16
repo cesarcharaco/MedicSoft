@@ -3,12 +3,12 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Modificación de Pedido
-        <small>Actualización</small>
+        Realizar Solicitud de Materiales
+        <small>Nueva Solicitud</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Modificar Pedido</a></li>
-        <li class="active">Existente</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Realizar Solicitud</a></li>
+        <li class="active">Nueva</li>
     </ol>
 </section>
 <div class="container">
@@ -17,16 +17,16 @@
             @include('alerts.requests')
             @include('flash::message')
             <div class="panel panel-default">
-                <div class="panel-heading">Modificación de Solicitud de Material <br>
+                <div class="panel-heading">Solicitud de Materiales <br>
                 Los campos con (<strong>*</strong>) son obligatorios</div>
 
                 <div class="panel-body">
-                    {!! Form::open(['route' => ['pedidos_oficinas.update',$pedido->id], 'method' => 'put']) !!}
+                    {!! Form::open(['route' => ['solicitud_materiales.store'], 'method' => 'post']) !!}
     
-                         @include('admin.pedidos_oficinas.partials.edit-fields')
+                         @include('admin.solicitud_materiales.partials.create-fields')
                         <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Enviar</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/pedidos_oficinas')}}"><i class="fa fa-times"></i> Cancelar</a>
+                        <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/solicitud_materiales')}}"><i class="fa fa-times"></i> Cancelar</a>
                       </div>
                     {!! Form::close() !!} 
                         <!-- /.form-group -->

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMaterialesPedidosTable extends Migration
+class CreateMaterialesSolicitadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateMaterialesPedidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('materiales_pedidos', function (Blueprint $table) {
+        Schema::create('materiales_solicitados', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_pedido')->unsigned();
+            $table->date('fecha');
             $table->integer('id_material')->unsigned();
             $table->string('cantidad',255);
 
-            $table->foreign('id_pedido')->references('id')->on('pedidos_oficinas')->onDelete('cascade');
-            $table->foreign('id_material')->references('id')->on('materiales');
+            $table->foreign('id_material')->references('id')->on('materiales')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateMaterialesPedidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materiales_pedidos');
+        Schema::dropIfExists('materiales_solicitados');
     }
 }

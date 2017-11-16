@@ -69,5 +69,22 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 		'uses' => 'PedidosOficinasController@vermateriales',
 		'as' => 'admin.pedidos_oficinas.vermateriales'
 		]);
+	Route::get('/seleccionarfecha',[
+		'uses' => 'PedidosOficinasController@seleccionarfecha',
+		'as' => 'admin.pedidos_oficinas.seleccionarfecha'
+		]);
+	Route::post('/buscarpedidos',[
+		'uses' => 'PedidosOficinasController@buscarpedidos',
+		'as' => 'admin.pedidos_oficinas.buscarpedidos'
+		]);
+
+	Route::resource('/solicitud_materiales','MaterialesSolicitadosController');
+	Route::get('/solicitud_materiales/{id}/vermateriales',[
+		'uses' => 'MaterialesSolicitadosController@vermateriales',
+		'as' => 'admin.solicitud_materiales.vermateriales'
+		]);
+	Route::get('/buscarsolicitudes/{fecha}',[
+		'uses' => 'MaterialesSolicitadosController@buscarsolicitudes',
+		'as' => 'admin.solicitud_materiales.buscarsolicitud']);
 });
 

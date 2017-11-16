@@ -10,7 +10,7 @@
         <div class="col-xs-11">
             <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Pedidos por Materiales</h3>
+              <h3 class="box-title">Solicitud de Materiales de la Fecha <strong>{{$fecha}}</strong></h3>
               
             </div>
             <!-- /.box-header -->
@@ -19,9 +19,6 @@
                 <thead>
                 <tr>
                   <th>Nro</th>
-                  <th>Oficina</th>
-                  <th>Fecha</th>
-                  <th>Código</th>
                   <th>Tipo de Material</th>
 	              <th>Descripción</th>
 	              <th>Modelo/Marca</th>
@@ -29,29 +26,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($pedidos_oficinas as $pedido)
+                @foreach($solicitud as $key)
                 
-                	@foreach($pedido->materiales as $material)
 		                <tr>
 		                    <td>{{$num=$num+1}}</td>
-		                    <td>{{$pedido->oficinas->oficina}} </td>
-		                    <td>{{$pedido->fecha}}</td>
-		                    <td>{{$pedido->codigo}}</td>
-		                    <td>{{$material->tipo_material}}</td>
-		                    <td>{{$material->descripcion}}</td>
-			                <td>{{$material->modelo_marca}}</td>
-			                <td>{{$material->pivot->cantidad}}</td>
+		                    <td>{{$key->materiales->tipo_material}}</td>
+		                    <td>{{$key->materiales->descripcion}}</td>
+			                <td>{{$key->materiales->modelo_marca}}</td>
+			                <td>{{$key->cantidad}}</td>
 		                    
 		                </tr>
-                	@endforeach
+                	
                 @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
                   <th>Nro</th>
-                  <th>Oficina</th>
-                  <th>Fecha</th>
-                  <th>Código</th>
                   <th>Tipo de Material</th>
 	              <th>Descripción</th>
 	              <th>Modelo/Marca</th>

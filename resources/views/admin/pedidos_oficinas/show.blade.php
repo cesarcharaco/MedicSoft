@@ -26,7 +26,7 @@
 	              <th>Descripción</th>
 	              <th>Modelo/Marca</th>
 	              <th>Cantidad</th>
-                  <th>Opciones</th>
+                  
                 </tr>
                 </thead>
                 <tbody>
@@ -42,15 +42,7 @@
 		                    <td>{{$material->descripcion}}</td>
 			                <td>{{$material->modelo_marca}}</td>
 			                <td>{{$material->pivot->cantidad}}</td>
-		                    <td>
-			                    <div class="btn-group">
-			                      <a href="#" >
-			                        <button onclick="material({{ $pedido->id }},{{$material->id}})" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede eliminar el registro" >
-			                          <i class="fa fa-trash"></i>
-			                        </button>
-			                      </a>
-			                    </div>
-			                </td>
+		                    
 		                </tr>
                 	@endforeach
                 @endforeach
@@ -65,7 +57,7 @@
 	              <th>Descripción</th>
 	              <th>Modelo/Marca</th>
 	              <th>Cantidad</th>
-                  <th>Opciones</th>
+                  
                 </tr>
                 </tfoot>
               </table>

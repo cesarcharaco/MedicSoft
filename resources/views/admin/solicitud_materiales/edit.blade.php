@@ -3,11 +3,11 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Modificación de Pedido
+        Modificación de Solicitud de Materiales
         <small>Actualización</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Modificar Pedido</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Modificar Solicitud</a></li>
         <li class="active">Existente</li>
     </ol>
 </section>
@@ -21,12 +21,12 @@
                 Los campos con (<strong>*</strong>) son obligatorios</div>
 
                 <div class="panel-body">
-                    {!! Form::open(['route' => ['pedidos_oficinas.update',$pedido->id], 'method' => 'put']) !!}
+                    {!! Form::open(['route' => ['solicitud_materiales.update',0], 'method' => 'put']) !!}
     
-                         @include('admin.pedidos_oficinas.partials.edit-fields')
+                         @include('admin.solicitud_materiales.partials.edit-fields')
                         <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Enviar</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/pedidos_oficinas')}}"><i class="fa fa-times"></i> Cancelar</a>
+                        <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/solicitud_materiales')}}"><i class="fa fa-times"></i> Cancelar</a>
                       </div>
                     {!! Form::close() !!} 
                         <!-- /.form-group -->

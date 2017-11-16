@@ -24,6 +24,14 @@
 <!-- DataTables -->
 <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<!-- InputMask -->
+<script src="{{ asset('plugins/input-mask/jquery.inputmask.js')}}"></script>
+<script src="{{ asset('plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
+<script src="{{ asset('plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+<script src="{{ asset('dist/js/js.js') }}"></script>
+
+<!-- bootstrap datepicker -->
+<script src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 <!-- page script -->
 <script>
   $(function () {
@@ -46,6 +54,15 @@ $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 <script type="text/javascript">
   //Initialize Select2 Elements
     $('.select2').select2()
+    //Datemask yyyy-mm-dd
+    $('#datemask').inputmask('yyyy-mm-dd', { 'placeholder': 'yyyy-mm-dd' });
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' });
+    //Money Euro
+    $('[data-mask]').inputmask();
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
 
 </script>
 <!-- Bootstrap WYSIHTML5 -->
