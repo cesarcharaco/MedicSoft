@@ -57,7 +57,7 @@ class MaterialesController extends Controller
                 $serial=$request->serial;
             }
             
-            if ($request->stock_min>$stock_max) {
+            if ($request->stock_min>$request->stock_max) {
                 flash("DISCULPE, EL STOCK MÍNIMO NO PUEDE SER MAYOR AL STOCK MÁXIMO!", 'error'); 
             return redirect()->route('materiales.create')->withInput();
             } else {
@@ -113,7 +113,7 @@ class MaterialesController extends Controller
 
         if (count($buscar)) {
             flash("DISCULPE, ESTE TIPO DE MATERIAL Y MODELO/MARCA YA HA SIDO REGISTRADO!", 'error'); 
-            return redirect()->route('materiales.edit')->withInput();
+            return redirect()->route('materiales.edit',$id)->withInput();
         } else {
             if ($request->descripcion=="") {
                 $descripcion="?";
@@ -126,9 +126,9 @@ class MaterialesController extends Controller
             } else {
                 $serial=$request->serial;
             }
-            if ($request->stock_min>$stock_max) {
+            if ($request->stock_min>$request->stock_max) {
                 flash("DISCULPE, EL STOCK MÍNIMO NO PUEDE SER MAYOR AL STOCK MÁXIMO!", 'error'); 
-            return redirect()->route('materiales.edit')->withInput();
+            return redirect()->route('materiales.edit',$id)->withInput();
             } else {
             $material=Materiales::find($id);
             $material->tipo_material=$request->tipo_material;

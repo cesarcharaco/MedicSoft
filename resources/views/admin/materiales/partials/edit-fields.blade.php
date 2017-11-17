@@ -14,3 +14,11 @@
 	{!! Form::label('serial',' Serial') !!}
 	{!! Form::text('serial',$material->serial,['class' => 'form-control','placeholder' => 'Ej: U2345', 'title' => 'Ingrese el Serial del Material', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('serial') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>
+<div class="form-group{{ $errors->has('serial') ? ' has-error' : '' }}">
+	{!! Form::label('stock_min','Stock Mínimo') !!}
+	{!! Form::number('stock_min',$material->stock_min,['class' => 'form-control','placeholder' => '1','title' => 'Ingrese el Stock Mínimo', 'min' => '1', 'required' => 'required', 'maxlength' => '10','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
+</div>
+<div class="form-group{{ $errors->has('serial') ? ' has-error' : '' }}">
+	{!! Form::label('stock_max','Stock Máximo') !!}
+	{!! Form::number('stock_max',$material->stock_max,['class' => 'form-control','placeholder' => '100','title' => 'Ingrese el Stock Máximo', 'min' => '1', 'required' => 'required', 'maxlength' => '10','oninput' => 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);']) !!}
+</div>

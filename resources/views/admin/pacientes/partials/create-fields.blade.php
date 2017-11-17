@@ -11,13 +11,13 @@
 	{!! Form::radio('institucion','MPPESCT',true,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación Superior, Ciencia y Tecnología']) !!}
 	{!! Form::label('MPPE','MPPE') !!}
 	{!! Form::radio('institucion','MPPE',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
-	{!! Form::label('CENIFA','CENIFA') !!}
-	{!! Form::radio('institucion','CENIFA',false,[ 'title' => 'Seleccione si la Institución  ']) !!}
+	{!! Form::label('SENIFA','SENIFA') !!}
+	{!! Form::radio('institucion','SENIFA',false,[ 'title' => 'Seleccione si la Institución  ']) !!}
 	{!! Form::label('SISMEU','SISMEU') !!}
 	{!! Form::radio('institucion','SISMEU',false,[ 'title' => 'Seleccione si la Institución  ']) !!}
 	{!! Form::label('CNAE','CNAE') !!}
 	{!! Form::radio('institucion','CNAE',false,[ 'title' => 'Seleccione si la Institución Aseguradora ']) !!}
-	{!! Form::label('FUNDABIT','FUNDABIT') !!}
+	{!! Form::label('FUNIDABT','FUNDABIT') !!}
 	{!! Form::radio('institucion','FUNDABIT',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
 	{!! Form::label('IPASME','IPASME') !!}
 	{!! Form::radio('institucion','IPASME',false,[ 'title' => 'Seleccione si la Institución Aseguradora es']) !!}

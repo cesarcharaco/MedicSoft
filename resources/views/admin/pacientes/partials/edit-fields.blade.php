@@ -19,6 +19,48 @@
 	@else
 		{!! Form::radio('institucion','MPPE',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
 	@endif
+
+	{!! Form::label('SENIFA','SENIFA') !!}
+	@if($paciente->institucion=="SENIFA")
+		{!! Form::radio('institucion','SENIFA',true,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@else
+		{!! Form::radio('institucion','SENIFA',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@endif
+
+	{!! Form::label('SISMEU','SISMEU') !!}
+	@if($paciente->institucion=="SISMEU")
+		{!! Form::radio('institucion','SISMEU',true,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@else
+		{!! Form::radio('institucion','SISMEU',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@endif	
+
+	{!! Form::label('CNAE','CNAE') !!}
+	@if($paciente->institucion=="CNAE")
+		{!! Form::radio('institucion','CNAE',true,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@else
+		{!! Form::radio('institucion','CNAE',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@endif
+
+	{!! Form::label('FUNIDABT','FUNIDABT') !!}
+	@if($paciente->institucion=="FUNIDABT")
+		{!! Form::radio('institucion','FUNIDABT',true,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@else
+		{!! Form::radio('institucion','FUNIDABT',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@endif
+
+	{!! Form::label('IPASME','IPASME') !!}
+	@if($paciente->institucion=="IPASME")
+		{!! Form::radio('institucion','IPASME',true,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@else
+		{!! Form::radio('institucion','IPASME',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@endif
+
+	{!! Form::label('OPSU','OPSU') !!}
+	@if($paciente->institucion=="OPSU")
+		{!! Form::radio('institucion','OPSU',true,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@else
+		{!! Form::radio('institucion','OPSU',false,[ 'title' => 'Seleccione si la Institución Aseguradora es el Ministerio del Poder Popular para la Educación ']) !!}
+	@endif
 </div>
 
 <div class="form-group{{ $errors->has('nombres') ? ' has-error' : '' }}">
