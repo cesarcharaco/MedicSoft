@@ -90,6 +90,7 @@
                     <li><a href="{{ URL('admin/pedidos_oficinas/show')}}"><i class="fa fa-circle-o"></i>Pedidos Por Materiales</a></li>
                     <li><a href="{{ URL('admin/seleccionarfecha')}}"><i class="fa fa-circle-o"></i>Reporte Diario de Pedidos</a></li>
                     <li><a href="{{ URL('admin/solicitud_materiales')}}"><i class="fa fa-circle-o"></i>Materiales Solicitados</a></li>
+                    <li><a href="{{ URL('admin/recepcion_materiales')}}"><i class="fa fa-circle-o"></i>Recepción de Materiales</a></li>
 
                 </ul>
             </li>

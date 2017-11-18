@@ -86,5 +86,10 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 	Route::get('/buscarsolicitudes/{fecha}',[
 		'uses' => 'MaterialesSolicitadosController@buscarsolicitudes',
 		'as' => 'admin.solicitud_materiales.buscarsolicitud']);
+	Route::resource('/recepcion_materiales','RecepcionMaterialesController');
+	Route::get('/recepcion_materiales/{fecha}/recibir',[
+		'uses' => 'RecepcionMaterialesController@recibir',
+		'as' => 'admin.recepcion_materiales.recibir'
+		]);
 });
 
