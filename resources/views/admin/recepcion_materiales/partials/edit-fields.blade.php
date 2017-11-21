@@ -1,3 +1,4 @@
+{!! Form::hidden('fecha_solicitud',$recibido->fecha_solicitud) !!}
 <div class="form-group">
 	{!! Form::label('responsable','* Responsable') !!}
 	{!! Form::text('responsable',$recibido->responsable,['class' => 'form-control','required' => 'required','title' => 'Ingrese el responsable del envío']) !!}
@@ -24,7 +25,7 @@
 			</td>
 			<td>
 			<div class="form-group">
-			{!! Form::hidden('fecha',$key->fecha_solicitud) !!}
+			
 			{!! Form::hidden('id_material[]',$key->id_material) !!}
 			{!! Form::hidden('stock_max[]',$key->materiales->stock_max) !!}
 			<strong>{{ $key->materiales->tipo_material}} - 

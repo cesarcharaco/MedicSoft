@@ -132,26 +132,29 @@ class RecepcionMaterialesController extends Controller
         } else {
             //restandole la cantidad sumada anterirormente
             for ($i=0; $i <count($request->id_material) ; $i++) { 
-                $recibido=MaterialesRecibidos::where('id_materialesrec',$id)->where('id_material',$request->id_material[$id])->first();
-
+                $recibido=MaterialesRecibidos::where('id_materialesrec',$id)->where('id_material',$request->id_material[$i])->first();
                 $material=Materiales::find($request->id_material[$i]);
+               
                 $material->disponible=$material->disponible-$recibido->cantidad;
                 $material->save();
             }
+            
             //--------------------
             for ($i=0; $i <count($request->id_material) ; $i++) { 
                 $material=Materiales::find($request->id_material[$i]);
                 $material->disponible=$material->disponible+$request->cantidad[$i];
                 $material->save();
             }
-            $fecha=date('Y-m-d');
-            $recibidos=RecepcionMateriales::create(['fecha_solicitud' => $request->fecha,
-                'fecha_entrega' => $fecha,
-                'responsable' => $request->responsable]);
+           
+            $recibidos=RecepcionMateriales::find($id);
+                $recibidos->responsable=$request->responsable;
+                $recibidos->save();
+
             for ($i=0; $i < count($request->id_material) ; $i++) { 
-                $materiales=MaterialesRecibidos::create(['id_materialesrec' => $recibidos->id,
-                    'id_material' => $request->id_material[$i],
-                    'cantidad' => $request->cantidad[$i]]);
+                $materiales=MaterialesRecibidos::where('id_materialesrec', $recibidos->id)
+                ->where('id_material',$request->id_material[$i])->first();
+                    $materiales->cantidad = $request->cantidad[$i];
+                    $materiales->save();
             }
         flash('ACTUALIZACIÓN EXITOSA DE LA DISPONIBILIDAD DE LOS MATERIALES RECIBIDOS');
             return redirect()->route('materiales.index');

@@ -12,7 +12,7 @@
             <div class="box-header">
               <h3 class="box-title">Recepción de Materiales</h3>
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-            <a href="{{ url('admin/recepcion_materiales/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+            <a href="{{ url('admin/solicitud_materiales') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                 <i class="fa fa-pencil"></i> Registrar Materiales Recibidos
             </a>
           </div>

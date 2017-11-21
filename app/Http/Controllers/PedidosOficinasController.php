@@ -53,18 +53,34 @@ class PedidosOficinasController extends Controller
         //dd($codigo);
         //verificando que la cantidad solicitada no sea mayor a la disponible
         $cont=0;
+        $cont_admin=0;
         for ($i=1; $i <count($request->cantidad) ; $i++) { 
             $material=Materiales::find($request->id_material[$i]);
             $disponible=$material->disponible-$material->stock_min;
             if ($request->cantidad[$i]>$disponible) {
                 $cont++;
             }
+            
+            if ($request->cantidad[$i]>$material->disponible and \Auth::user()->tipo_user=="Administrador") {
+                $cont_admin++;    
+            }
+
+
+
         }
-        if ($cont>0) {
+        //dd($cont_admin);
+        if ($cont>0 and \Auth::user()->tipo_user=="Almacenista") {
             flash("DISCULPE, HA AGREGADO UNA CANTIDAD PARA UN MATERIAL QUE SUPERA LO DISPONIBLE", 'error'); 
 
-        return redirect()->back()->withInput();   
+        return redirect()->back()->withInput();
         } else {
+            if ($cont_admin>0) {
+                flash("DISCULPE, HA AGREGADO UNA CANTIDAD PARA UN MATERIAL QUE SUPERA LO DISPONIBLE", 'error'); 
+
+                return redirect()->back()->withInput();
+            } else {
+                
+            
             //descontando del material lo solicitado
             for ($i=1; $i <count($request->cantidad) ; $i++) { 
                 $material=Materiales::find($request->id_material[$i]);
@@ -87,6 +103,8 @@ class PedidosOficinasController extends Controller
              flash("PEDIDO REALIZADO CON ÉXITO", 'success'); 
 
             return redirect()->route('pedidos_oficinas.index');
+
+            }
         }
     }
 

@@ -18,7 +18,7 @@
     @include('layouts.partials.mainheader')
     <!-- Left side column. contains the logo and sidebar -->
 
-    @include('layouts.partials.sidebar')
+    @include('layouts.partials.sidebar2')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
