@@ -75,7 +75,10 @@ class ConsultasController extends Controller
             $turno=Turnos::where('id_dia',$id_dia)->where('momento',$momento)->first();
             $tipoconsultas=Horarios::where('id_turno',$turno->id)->get();
         
-        //dd('aqui');
+        /*foreach ($tipoconsultas as $key) {
+            echo $key->especialidades->tipoconsultas[0]->consultasmontos[0]->id."<br>";
+        }
+        dd('aqui');*/
         return view('admin.consultas.create', compact('pacientesnt','tipoconsultas','laboratorios'));
         }else{
             flash("DISCULPE, NO SE PUEDE REGISTRAR LA CONSULTA EN LOS DÍAS SÁBADO O DOMINGO!", 'error'); 
@@ -95,7 +98,7 @@ class ConsultasController extends Controller
         $fecha=date('Y-m-d');
         //dd($request->laboratorio);
         if ($request->id_tipoconsulta!==NULL) {
-            
+            //dd($request->id_tipoconsulta);
         $consultamonto=ConsultasMontos::where('id_tipoconsulta',$request->id_tipoconsulta)->get()->last();
         if (count($consultamonto)==0) {
             flash("DISCULPE, NO SE PUEDE REGISTRAR LA CONSULTA YA QUE LA MISMA AÚN SE ENCUENTRA SIN UN MONTO DE PAGO!", 'error'); 
@@ -444,13 +447,29 @@ class ConsultasController extends Controller
         $vistas=Consultas::where('fecha',$fecha)->where('estado','Vista')->get();
 
         if (count($vistas)>0 AND count($consultas) >0) {
-            
-            Excel::create("Reporte Diario", function ($excel) use ($tipoconsultas,$consultas,$vistas) {
+            $id_tipoconsulta=array();
+             $tipo_consulta=array();
+             $i=0;
+                      foreach($tipoconsultas as $tipo){
+                      $cont2=0; 
+                        foreach($vistas as $vista){
+                          if($tipo->id == $vista->consultasmontos->id_tipoconsulta){
+                            $cont2++;
+                          }
+                        }
+                        if($cont2>0){
+                         $id_tipoconsulta[$i]=$tipo->id;
+                         $tipo_consulta[$i]=$tipo->consulta; 
+                                $i++;
+                                 
+                            }
+                         }    
+            Excel::create("Reporte Diario", function ($excel) use ($tipoconsultas,$consultas,$vistas,$id_tipoconsulta,$tipo_consulta) {
 
                 $excel->setTitle("Reporte Diario");
-                $excel->sheet("Pestaña 1", function ($sheet) use ($tipoconsultas,$consultas,$vistas) 
+                $excel->sheet("Pestaña 1", function ($sheet) use ($tipoconsultas,$consultas,$vistas,$id_tipoconsulta,$tipo_consulta) 
                 {
-                    $sheet->loadView('admin.reportes.excel.diario')->with('tipoconsultas', $tipoconsultas)->with('consultas',$consultas)->with('vistas',$vistas);
+                    $sheet->loadView('admin.reportes.excel.diario')->with('tipoconsultas', $tipoconsultas)->with('consultas',$consultas)->with('vistas',$vistas)->with('id_tipoconsulta',$id_tipoconsulta)->with('tipo_consulta',$tipo_consulta);
                 });
 
             })->download('xlsx');
@@ -470,8 +489,26 @@ class ConsultasController extends Controller
         $vistas=Consultas::where('fecha',$fecha)->where('estado','Vista')->get();
 
         if (count($vistas)>0 AND count($consultas) >0) {
-            
-            return view('admin.reportes.diario', compact('tipoconsultas','consultas','vistas'));
+        
+             $id_tipoconsulta=array();
+             $tipo_consulta=array();
+             $i=0;
+                      foreach($tipoconsultas as $tipo){
+                      $cont2=0; 
+                        foreach($vistas as $vista){
+                          if($tipo->id == $vista->consultasmontos->id_tipoconsulta){
+                            $cont2++;
+                          }
+                        }
+                        if($cont2>0){
+                         $id_tipoconsulta[$i]=$tipo->id;
+                         $tipo_consulta[$i]=$tipo->consulta; 
+                                $i++;
+                                 
+                            }
+                         }
+            //dd($tipo_consulta);
+            return view('admin.reportes.diario', compact('tipoconsultas','consultas','vistas','id_tipoconsulta','tipo_consulta'));
         } else {
             flash("NO EXISTEN CONSULTAS PARA EL DÍA DE HOY QUE HALLAN SIDO MARCADAS COMO VISTAS!", 'success'); 
             return redirect()->route('consultas.index');

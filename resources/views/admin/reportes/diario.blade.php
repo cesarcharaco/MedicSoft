@@ -33,19 +33,25 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              
+              <div style="overflow: scroll;">
                 <table id="example1" class="table table-bordered table-hover">
                   <tr>
                     <td colspan="6" style="text-align:center">
                       <img src="{{ asset('logoclinica.png') }}" class="user-image" alt="User Image">
                     </td>
-                    @foreach($tipoconsultas as $tipo)
-                      <td rowspan="2">
-                        <div class="vertical">
-                          {{$tipo->consulta}}
-                        </div>
+                      <td>
+                        
                       </td>
-                    @endforeach
+                      
+                    @for($i=0;$i<count($tipo_consulta);$i++)
+
+                      <td rowspan="2" style="width: 100px;">
+                        <p class="vertical">
+                          {{$tipo_consulta[$i]}}
+                        </p>
+                      </td>
+                    @endfor
+                      <td rowspan="2"></td>
                   </tr>
                   <tr>
                     <td>Nro</td>
@@ -54,7 +60,7 @@
                     <td style="text-align:center">Edad</td>
                     <td style="text-align:center">C.I. Titular</td>
                     <td style="text-align:center">Titular</td>
-                    
+                    <td style="text-align:center">Diagnóstico</td>
                   </tr>
                   <?php $num=0; ?>
                   @foreach($consultas as $consulta)
@@ -77,26 +83,42 @@
                       <td>
                         {{$consulta->pacientesnt->pacientes->nombres}} {{$consulta->pacientesnt->pacientes->apellidos}}
                       </td>
-                      @foreach($tipoconsultas as $tipo)
+                      
+                      <?php $diagnostico=""; ?>
+                        @for($j=0; $j<count($id_tipoconsulta);$j++)
                       <?php $cont=0; ?>
                         @foreach($vistas as $vista)
-                          @if($tipo->id == $vista->consultasmontos->id_tipoconsulta AND $vista->id_pacientent==$consulta->id_pacientent)
-                            <td>
-
-                            <button onclick="diagnostico('{{$vista->diagnostico}}')" class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede ver el diagnóstico de la consulta" >
-                              <i class="fa fa-eye"></i>
-                            </button>
-                          
+                          @if($id_tipoconsulta[$j] == $vista->consultasmontos->id_tipoconsulta AND $vista->id_pacientent==$consulta->id_pacientent)
+                            
+                          <?php $cont++; $diagnostico=$vista->diagnostico.""; ?>
                           @endif
+
                         @endforeach
-                        @if($cont==0)
+                          
+                      @endfor
+                      <td><?php echo $diagnostico; ?></td>
+                      @for($j=0; $j<count($id_tipoconsulta);$j++)
+                      <?php $cont=0; ?>
+                        @foreach($vistas as $vista)
+                          @if($id_tipoconsulta[$j] == $vista->consultasmontos->id_tipoconsulta AND $vista->id_pacientent==$consulta->id_pacientent)
+                            <td>
+                                x
+                            {{-- <button style="width: 3px; height: 3px ;" onclick="diagnostico('{{$vista->diagnostico}}')" class="btn btn-info btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede ver el diagnóstico de la consulta" >
+                            </button> --}}
+                          </td>
+                          <?php $cont++; ?>
+                          @endif
+
+                        @endforeach
+                          @if($cont==0)
                           <td></td>
-                        @endif
-                      @endforeach
+                          @endif
+                      @endfor
                     </tr>
                   @endforeach
 
                 </table>
+                </td>
             </div>
             <!-- /.box-body -->
           </div>
