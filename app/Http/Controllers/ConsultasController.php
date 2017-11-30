@@ -74,9 +74,9 @@ class ConsultasController extends Controller
         
             $turno=Turnos::where('id_dia',$id_dia)->where('momento',$momento)->first();
             $tipoconsultas=Horarios::where('id_turno',$turno->id)->get();
-        
+        //dd($tipoconsultas);echo $key->especialidades->tipoconsultas[0]->consultasmontos[0]->id."<br>";
         /*foreach ($tipoconsultas as $key) {
-            echo $key->especialidades->tipoconsultas[0]->consultasmontos[0]->id."<br>";
+            echo $key->especialidades->tipoconsultas."<br>";
         }
         dd('aqui');*/
         return view('admin.consultas.create', compact('pacientesnt','tipoconsultas','laboratorios'));

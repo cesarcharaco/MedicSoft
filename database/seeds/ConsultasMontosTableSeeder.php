@@ -11,20 +11,14 @@ class ConsultasMontosTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('consultas_montos')->insert([
-            'id_tipoconsulta' => 1,
-            'monto' => 10000,
-            'fecha' => date('Y-m-d')
-        ]);
-        DB::table('consultas_montos')->insert([
-            'id_tipoconsulta' => 2,
-            'monto' => 10000,
-            'fecha' => date('Y-m-d')
-        ]);
-        DB::table('consultas_montos')->insert([
-            'id_tipoconsulta' => 3,
-            'monto' => 10000,
-            'fecha' => date('Y-m-d')
-        ]);
+        for ($i=1; $i <=65; $i++) { 
+            DB::table('consultas_montos')->insert([
+                'id_tipoconsulta' => $i,
+                'monto' => 10000,
+                'fecha' => date('Y-m-d')
+            ]);
+            
+        }
+        
     }
 }
